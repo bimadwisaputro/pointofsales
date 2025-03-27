@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="adminlte/assets/img/favicon.png" rel="icon">
-    <link href="adminlte/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/adminlte/assets/img/favicon.png" rel="icon">
+    <link href="assets/adminlte/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -20,16 +20,22 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="adminlte/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="adminlte/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="adminlte/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="adminlte/assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="adminlte/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="adminlte/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="adminlte/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="{{ asset('assets/adminlte/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/adminlte/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/adminlte/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/adminlte/assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/adminlte/assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/adminlte/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/adminlte/assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="adminlte/assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset('assets/adminlte/assets/css/style.css') }}" rel="stylesheet">
+    <!-- out template -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/loading_spinner.css') }}" type="text/css">
+    <link href="{{ asset('assets/bootstrap-tags/bootstrap-tagsinput.css') }}" rel="stylesheet">.
+    <!-- izitoast -->
+    <link href="{{ asset('assets/iziToast/dist/css/iziToast.css') }}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: NiceAdmin
@@ -41,7 +47,13 @@
 </head>
 
 <body>
-
+    <div id="loading">
+        <div class="loader">
+            <div class="inner one"></div>
+            <div class="inner two"></div>
+            <div class="inner three"></div>
+        </div>
+    </div>
     <main>
         <div class="container">
 
@@ -53,7 +65,7 @@
 
                             <div class="d-flex justify-content-center py-4">
                                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="adminlte/assets/img/logo.png" alt="">
+                                    <img src="assets/adminlte/assets/img/logo.png" alt="">
                                     <span class="d-none d-lg-block">Point Of Sales</span>
                                 </a>
                             </div><!-- End Logo -->
@@ -126,19 +138,34 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
+
+    <!-- CDN -->
+    <script src=" https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
     <!-- Vendor JS Files -->
-    <script src="adminlte/assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="adminlte/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="adminlte/assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="adminlte/assets/vendor/echarts/echarts.min.js"></script>
-    <script src="adminlte/assets/vendor/quill/quill.js"></script>
-    <script src="adminlte/assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="adminlte/assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="adminlte/assets/vendor/php-email-form/validate.js"></script>
+    <script src="{{ asset('assets/adminlte/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/adminlte/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/adminlte/assets/vendor/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('assets/adminlte/assets/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('assets/adminlte/assets/vendor/quill/quill.js') }}"></script>
+    <script src="{{ asset('assets/adminlte/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/adminlte/assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/adminlte/assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="adminlte/assets/js/main.js"></script>
-
+    <script src="{{ asset('assets/adminlte/assets/js/main.js') }}"></script>
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- tags input -->
+    <script src="{{ asset('assets/bootstrap-tags/bootstrap-tagsinput.min.js') }}"></script>
+    <!-- izitoast -->
+    <script src="{{ asset('assets/iziToast/dist/js/iziToast.js') }}"></script>
+    <script>
+        setTimeout(function() {
+            $('#loading').hide();
+        }, 2000);
+    </script>
 </body>
 
 </html>
