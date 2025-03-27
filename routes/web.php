@@ -3,7 +3,6 @@
 use App\Http\Controllers\BelajarController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +13,7 @@ Route::get('/', function () {
 });
 Route::post('action-login', [LoginController::class, 'login']);
 Route::get('action-logout', [LoginController::class, 'logout']);
-Route::get('login', [LoginController::class, 'index']);
+Route::get('login', [LoginController::class, 'index'])->name('login');
 
 //Belajar
 Route::get('belajar', [BelajarController::class, 'index']);
