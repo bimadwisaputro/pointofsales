@@ -16,7 +16,7 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- CDN -->
-<script src=" https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript" language="javascript"
@@ -52,7 +52,137 @@
 <script src="{{ asset('assets/bootstrap-tags/bootstrap-tagsinput.min.js') }}"></script>
 <!-- izitoast -->
 <script src="{{ asset('assets/iziToast/dist/js/iziToast.js') }}"></script>
+
 <script>
+    // $('.select2tags').select2();
+
+    function removesdetail(counter) {
+        $("#sub_row" + counter).remove();
+        getgrandtotal()
+    }
+
+    $(document).on('click', '.add-row', function() {
+        var category_id = $("#category_id").val();
+        var product = $("#product_id").val();
+        var res = product.split("###");
+        var product_id = res[0];
+        var price = res[1];
+        var photo = res[2];
+        var description = res[3];
+        var name = res[4];
+        dataMap = {};
+        dataMap['category_id'] = category_id;
+        dataMap['product_id'] = product_id;
+        if (category_id == "") {
+            alert('category Kosong');
+            return false;
+        }
+        if (product_id == "") {
+            alert('Product Kosong');
+            return false;
+        }
+
+        counter = 1;
+        $('[name="qty[]"]').each(function() {
+            counter++;
+        })
+
+        if (counter > 26) {
+            alert('Maksimum 26 item');
+            return false;
+        }
+
+
+        trtd = `
+            <tr id="sub_row${counter}" name="sub_row[]">
+                <td><div class="circular"><img src="http://127.0.0.1:8000/storage/${photo}" alt="Ini gambar"></div></td>
+                <td>${name}</td>
+                <td><input type="number" id="qty${counter}" class="form-control qtyclass" name="qty[]" value="1" counter="${counter}"></td>
+                <td><input type="number" id="price${counter}" class="form-control priceclass" name="price[]" value="${price}" counter="${counter}"></td>
+                <td><input type="number" id="total${counter}" class="form-control totalclass" name="total[]" value="${price}" counter="${counter}"></td>
+                <td class="text-center">
+                     <a href="#" class="icon fe-md" onclick="removesdetail(${counter})">
+                        <i class="bi bi-x-square "></i>
+                    </a>
+                </td>
+            </tr>
+        `;
+        $("#tbodys").append(trtd);
+        // clearAll();
+        getgrandtotal()
+    });
+
+    function clearAll() {
+        $("#category_id").val("");
+        $("#product_id").val("");
+    }
+
+
+    $(document).on('input', '[id^=qty]', function() {
+        var qty = $(this).val();
+        var counter = $(this).attr('counter');
+        var price = $('#price' + counter).val();
+        var total = qty * price;
+        $('#total' + counter).val(total);
+        getgrandtotal()
+    })
+
+
+    function getgrandtotal() {
+        gtotal = 0;
+        $('[name="total[]"]').each(function() {
+            gtotal = gtotal + parseInt($(this).val());
+        })
+        $("#subtotal").val(gtotal);
+        $("#grandtotal").val(gtotal);
+
+    }
+
+    $(document).on('change', '[id=product_id]', function() {
+        var hiddenproduct = $("#hiddenproduct").val();
+        var product_id = $(this).val();
+        // $.each(hiddenproduct, function(key, value) {
+        // alert(value);
+        // })
+    })
+
+    $(document).on('change', '[id=category_id]', function() {
+        $('#loading').show();
+        var category_id = $(this).val();
+        dataMap = {};
+        dataMap['category_id'] = category_id;
+        $.ajax({
+            type: 'POST',
+            url: '/get-product',
+            data: dataMap,
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(res) {
+                if (res.status == '1') {
+                    $('#hiddenproduct').val(res.data);
+                    $('#product_id').empty();
+                    $('#product_id').append(
+                        `
+                        <option value="">Select One</option>
+                         `
+                    );
+                    $.each(res.data, function(key, value) {
+                        $('#product_id').append(
+                            `
+                            <option value="${value.id}###${value.product_price}###${value.product_photo}###${value.product_description}###${value.product_name}">${value.product_name}</option>
+                             `
+                        );
+                    });
+                } else {
+                    alert('data empty'); // sweet alert
+                }
+                $('#loading').hide();
+            }
+        });
+    });
+
     // $('.datatable').DataTable({
     //     dom: 'Bfrtip',
     //     buttons: [
@@ -135,7 +265,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a type="button" class="btn btn-danger" href="action-logout">Logout</a>
+                <a type="button" class="btn btn-danger" href="/action-logout">Logout</a>
             </div>
         </div>
     </div>

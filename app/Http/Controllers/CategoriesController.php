@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+
 
 class CategoriesController extends Controller
 {
@@ -12,9 +14,10 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $data['title'] = "Categories";
-        $data['data'] = Categories::get();
-        return view('categories.index', $data);
+        $title = "Data Categories";
+        // select * from categories
+        $datas = Categories::get();
+        return view('categories.index', compact('title', 'datas'));
     }
 
     /**
@@ -22,10 +25,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
-        $data['title'] = "Categories";
-        // $data['data'] = Categories::get();
-        return view('categories.create', $data);
+        return view('categories.create');
     }
 
     /**
@@ -33,10 +33,10 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
         Categories::create([
-            'name' => $request->name,
+            'category_name' => $request->category_name,
         ]);
+
         return redirect()->to('categories');
     }
 
@@ -53,9 +53,8 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        $data['edit'] = Categories::find($id);
-        return view('categories.edit', $data);
+        $edit = Categories::find($id);
+        return view('categories.edit', compact('edit'));
     }
 
     /**
@@ -63,12 +62,16 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        $data['name'] = $request->name;
-        Categories::where('id', $id)->update($data);
-        // $categories = Categories::find($id);
-        // $categories->name = $request->name;
-        // $categories->save();
+        // Categories::where('id', $id)->update([
+        //     'category_name' => $request->category_name,
+        // ]);
+
+        // Auth::user()->profile->id;
+
+        $category = Categories::find($id);
+        $category->category_name = $request->category_name;
+        $category->save();
+
         return redirect()->to('categories');
     }
 
@@ -77,8 +80,9 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         Categories::where('id', $id)->delete();
+        // $category = Categories::find($id);
+        // $category->delete();
         return redirect()->to('categories');
     }
 }

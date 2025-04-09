@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categories;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Categories;
 
 class CategoriesSeeder extends Seeder
 {
@@ -13,12 +13,16 @@ class CategoriesSeeder extends Seeder
      */
     public function run(): void
     {
-        //
         Categories::insert([
-            ['name' => 'Makanan'],
-            ['name' => 'Minuman'],
-            ['name' => 'Non Alkohol'],
-            ['name' => 'Alkohol']
+            [
+                'name' => 'Makanan'
+            ],
+            [
+                'name' => 'Minuman',
+            ],
+            [
+                'name' => 'Non Alkohol',
+            ]
         ]);
     }
 }

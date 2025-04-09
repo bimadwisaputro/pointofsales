@@ -8,6 +8,7 @@
     <title>{{ $title ?? '' }}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicons -->
     <link href="{{ asset('assets/adminlte/assets/img/favicon.png') }}" rel="icon">
@@ -35,6 +36,7 @@
     <link rel="stylesheet" href="{{ asset('css/loading_spinner.css') }}" type="text/css">
     <link href="{{ asset('assets/bootstrap-tags/bootstrap-tagsinput.css') }}" rel="stylesheet">.
     <!-- izitoast -->
+
     <link href="{{ asset('assets/iziToast/dist/css/iziToast.css') }}" rel="stylesheet">
     <style>
         .bootstrap-tagsinput .tag {
@@ -57,6 +59,29 @@
             width: 100%;
             line-height: 22px;
             cursor: text;
+        }
+
+        .circular {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            margin: auto;
+        }
+
+        .circular img {
+            min-width: 100%;
+            min-height: 100%;
+            width: 70px;
+            height: auto;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
     </style>
 

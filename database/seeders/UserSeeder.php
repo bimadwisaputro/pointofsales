@@ -13,11 +13,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        //eloquent / raw query / db
+        // eloquent
+        // raw query
+        // db
         User::create([
-            'name' => 'Admin',
+            'name'  => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => 'Admin123',
+            'password' => '12345678',
         ]);
     }
 }

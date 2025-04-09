@@ -21,7 +21,7 @@
                                 </thead>
                                 <tbody>
                                     @php $no=1 @endphp
-                                    @foreach ($data as $rowcat)
+                                    @foreach ($datas as $rowcat)
                                         <tr>
                                             <td class="text-center">{{ $no++ }}</td>
                                             <td>{{ $rowcat->name }}</td>

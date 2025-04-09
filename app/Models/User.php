@@ -34,6 +34,7 @@ class User extends Authenticatable
     ];
 
     /**
+     * Auth::user()->name;
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -44,5 +45,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function profile()
+    {
     }
 }
