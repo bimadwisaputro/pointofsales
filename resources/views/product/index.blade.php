@@ -30,8 +30,14 @@
                                     @foreach ($datas as $index => $data)
                                         <tr>
                                             <td>{{ $index += 1 }}</td>
-                                            <td><img width="100" src="{{ asset('storage/' . $data->product_photo) }}"
-                                                    alt="">
+                                            <td>
+                                                <div class="circular"><a
+                                                        href="{{ asset('storage/' . $data->product_photo) }}" data-fancybox>
+                                                        <img width="100"
+                                                            src="{{ asset('storage/' . $data->product_photo) }}"
+                                                            alt="">
+                                                    </a>
+                                                </div>
                                             </td>
                                             <td>{{ $data->category->name }}</td>
                                             <td>{{ $data->product_name }}</td>

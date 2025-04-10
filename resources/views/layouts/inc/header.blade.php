@@ -83,6 +83,10 @@
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
         }
+
+        .swal-wide {
+            width: 150px !important;
+        }
     </style>
 
     <!-- =======================================================

@@ -33,13 +33,13 @@
                                             <td>{{ $data->order_date }}</td>
                                             <td>{{ $data->order_amount }}</td>
                                             <td>{{ $data->status ? 'Paid' : 'Unpaid' }}</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ route('pos.show', $data->id) }}"
                                                     class="btn btn-sm btn-secondary">
-                                                    <i class="bi bi-detail"></i>
+                                                    <i class="bi bi-pencil"></i>
                                                 </a>
                                                 <a href="{{ route('pos.edit', $data->id) }}" class="btn btn-sm btn-success">
-                                                    <i class="bi bi-print"></i>
+                                                    <i class="bi bi-file"></i>
                                                 </a>
                                             </td>
                                         </tr>

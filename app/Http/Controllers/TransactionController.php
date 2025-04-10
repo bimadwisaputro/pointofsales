@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Others;
+use App\Models\OthersDetails;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -117,5 +119,44 @@ class TransactionController extends Controller
         $product->delete();
         toast('Data Deleted Successfully', 'success');
         return redirect()->to('product');
+    }
+    public function insertTransaction(Request $request)
+    {
+        //insert order
+        $data = new Others;
+        $getcode = Others::max('id');
+        $getcode++;
+        $data->order_code = 'ORD' . date('dmy') . sprintf("%03d", $getcode);
+        $data->order_amount = $request->grandtotal;
+        $data->order_date = date('Y-m-d');
+        $data->order_change = 1;
+        $data->order_status = 1;
+
+        if ($data->save()) {
+
+            //insert order detail
+            $last_insert = $data->id;
+            $detaillist = json_decode($request->listjson);
+            if (count($detaillist) > 0) {
+                $noc = 1;
+                foreach ($detaillist as $indexname => $rows) {
+                    $set[$noc] = array();
+                    $no = 0;
+                    foreach ($rows[1] as $index => $row) {
+                        if ($no == 0) {
+                            $set[$noc]['order_id'] = $last_insert;
+                        }
+                        $set[$noc][$index] = $row;
+                        $no++;
+                    }
+                    OthersDetails::create($set[$noc]);
+                    $noc++;
+                }
+            }
+            $json['status'] = 1;
+        } else {
+            $json['status'] = 0;
+        }
+        return json_encode($json);
     }
 }

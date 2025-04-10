@@ -7,9 +7,6 @@
                 <div class="card effectup ">
                     <div class="card-body">
                         <h5 class="card-title">Select Categories</h5>
-                        <div align="right" class="mt-2">
-                            <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
-                        </div>
                         <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                         </form>
@@ -54,19 +51,21 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="4"> Subtotal</th>
-                                    <td colspan="2">
-                                        <input type="number" name="" id="subtotal" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th colspan="4"> Grand Total</th>
                                     <td colspan="2">
-                                        <input type="number" name="" id="grandtotal" class="form-control">
+                                        <span id="grandtotal"></span>
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card effectup ">
+                    <div class="card-body text-center">
+                        <a href="{{ url()->previous() }}" class="btn btn-danger mt-3">Back</a>
+                        <button id="saveorder_" class="btn btn-success mt-3">Save</button>
                     </div>
                 </div>
             </div>

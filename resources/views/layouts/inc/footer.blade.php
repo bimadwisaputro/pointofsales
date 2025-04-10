@@ -52,6 +52,11 @@
 <script src="{{ asset('assets/bootstrap-tags/bootstrap-tagsinput.min.js') }}"></script>
 <!-- izitoast -->
 <script src="{{ asset('assets/iziToast/dist/js/iziToast.js') }}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet" />
+
 
 <script>
     // $('.select2tags').select2();
@@ -61,45 +66,86 @@
         getgrandtotal()
     }
 
+    function formatRupiah(number) {
+        const formatted = number.toLocaleString("id", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        })
+        return formatted;
+    }
+
     $(document).on('click', '.add-row', function() {
         var category_id = $("#category_id").val();
-        var product = $("#product_id").val();
-        var res = product.split("###");
-        var product_id = res[0];
-        var price = res[1];
-        var photo = res[2];
-        var description = res[3];
-        var name = res[4];
-        dataMap = {};
-        dataMap['category_id'] = category_id;
-        dataMap['product_id'] = product_id;
-        if (category_id == "") {
-            alert('category Kosong');
-            return false;
-        }
-        if (product_id == "") {
-            alert('Product Kosong');
-            return false;
-        }
+        var product_id = $("#product_id").val();
+        var optionselected = $("#product_id").find("option:selected");
+        var price = optionselected.data('price');
+        var photo = optionselected.data('photo');
+        var description = optionselected.data('description');
+        var name = optionselected.data('name');;
 
-        counter = 1;
-        $('[name="qty[]"]').each(function() {
-            counter++;
+        checkpoint = 0;
+        $('[name="product_id[]"]').each(function(i, val) {
+            if ($(this).val() == product_id) {
+                checkpoint++;
+            }
         })
 
-        if (counter > 26) {
-            alert('Maksimum 26 item');
-            return false;
-        }
+        if (parseInt(checkpoint) > 0) {
+            Swal.fire({
+                position: "top-end",
+                icon: "warning",
+                text: 'Product Sudah Ditambahkan',
+                title: "Warning",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        } else {
+
+            dataMap = {};
+            dataMap['category_id'] = category_id;
+            dataMap['product_id'] = product_id;
+            if (category_id == "") {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    text: 'Category Kosong!',
+                    title: "Error",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                return false;
+            }
+            if (product_id == "") {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    text: 'Product Kosong!',
+                    title: "Error",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                return false;
+            }
+
+            counter = 1;
+            $('[name="qty[]"]').each(function() {
+                counter++;
+            })
+
+            if (counter > 26) {
+                alert('Maksimum 26 item');
+                return false;
+            }
 
 
-        trtd = `
+            trtd = `
             <tr id="sub_row${counter}" name="sub_row[]">
-                <td><div class="circular"><img src="http://127.0.0.1:8000/storage/${photo}" alt="Ini gambar"></div></td>
+                <input type="hidden" id="product_id${counter}" fild="product_id" name="product_id[]" class="formclass${counter}" value="${product_id}">
+                <td><div class="circular"><a href="{{ asset('storage/') }}/${photo}" data-fancybox><img src="{{ asset('storage/') }}/${photo}" alt="Ini gambar"></a></div></td>
                 <td>${name}</td>
-                <td><input type="number" id="qty${counter}" class="form-control qtyclass" name="qty[]" value="1" counter="${counter}"></td>
-                <td><input type="number" id="price${counter}" class="form-control priceclass" name="price[]" value="${price}" counter="${counter}"></td>
-                <td><input type="number" id="total${counter}" class="form-control totalclass" name="total[]" value="${price}" counter="${counter}"></td>
+                <td><input type="number" id="qty${counter}" fild="qty" class="form-control formclass${counter}" name="qty[]" value="1" counter="${counter}"></td>
+                <td><span id="price${counter}" class="formclass${counter}" fild="order_price" name="price[]" counter="${counter}">${formatRupiah(parseInt(price))}</span></td>
+                <td><span id="total${counter}" class="formclass${counter}" fild="order_subtotal"  name="total[]" counter="${counter}">${formatRupiah(parseInt(price))}</span></td>
                 <td class="text-center">
                      <a href="#" class="icon fe-md" onclick="removesdetail(${counter})">
                         <i class="bi bi-x-square "></i>
@@ -107,9 +153,10 @@
                 </td>
             </tr>
         `;
-        $("#tbodys").append(trtd);
-        // clearAll();
-        getgrandtotal()
+            $("#tbodys").append(trtd);
+            // clearAll();
+            getgrandtotal()
+        }
     });
 
     function clearAll() {
@@ -118,33 +165,123 @@
     }
 
 
+    $(document).on('click', '[id^=saveorder_]', function() {
+
+
+        Swal.fire({
+            title: "Are you sure want to save this data?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            showLoaderOnConfirm: true,
+            width: 600,
+            padding: "3em",
+            color: "#716add",
+            background: "#fff url(/images/trees.png)",
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("/images/nyan-cat.gif")
+                left top
+                no-repeat
+            `,
+            preConfirm: async (login) => {
+                Swal.showLoading();
+                try {
+                    i = 0;
+                    mapping = [
+                        []
+                    ];
+                    $('[name="qty[]"]').each(function() {
+                        var counter = $(this).attr('counter');
+                        dataDetail = {};
+                        $.each($(".formclass" + counter), function(index, value) {
+                            var id = $(this).attr("id");
+                            var check_tag = $("#" + id + "").prop("tagName");
+                            // alert(check_tag);
+                            var fild = $(this).attr("fild");
+                            if (check_tag == 'SPAN') {
+                                var valueisi = $("#" + id + "").text().replace(
+                                    /\./g, '');
+                            } else {
+                                var valueisi = $("#" + id + "").val();
+                            }
+                            dataDetail["" + fild + ""] = "" + valueisi + "";
+                        });
+                        mapping[i] = [counter, dataDetail];
+                        i++;
+                    })
+                    var lempardata = JSON.stringify(mapping);
+                    console.log(lempardata);
+                    dataMap = {};
+                    dataMap['listjson'] = lempardata;
+                    dataMap['grandtotal'] = $("#grandtotal").text().replace(/\./g, '');
+                    $.ajax({
+                        type: 'POST',
+                        url: '/insert-transaction',
+                        data: dataMap,
+                        dataType: 'json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(res) {
+                            if (res.status == '1') {
+                                window.location.href = '/pos';
+                            } else {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "error",
+                                    text: 'Error!',
+                                    title: "Error",
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                });
+                            }
+                            $('#loading').hide();
+                        }
+                    });
+
+                } catch (error) {
+
+                }
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+            }
+        });
+
+
+    });
+
     $(document).on('input', '[id^=qty]', function() {
         var qty = $(this).val();
         var counter = $(this).attr('counter');
-        var price = $('#price' + counter).val();
-        var total = qty * price;
-        $('#total' + counter).val(total);
+        var price = $('#price' + counter).text();
+        //price.replace(/\./g,'');
+        var total = parseInt(qty) * parseInt(price.replace(/\./g, ''));
+        $('#total' + counter).text(formatRupiah(total));
         getgrandtotal()
     })
-
 
     function getgrandtotal() {
         gtotal = 0;
         $('[name="total[]"]').each(function() {
-            gtotal = gtotal + parseInt($(this).val());
+            nom = $(this).text();
+            gtotal = gtotal + parseInt(nom.replace(/\./g, ''));
         })
-        $("#subtotal").val(gtotal);
-        $("#grandtotal").val(gtotal);
-
+        // $("#subtotal").val(gtotal);
+        $("#grandtotal").text(formatRupiah(gtotal));
     }
 
-    $(document).on('change', '[id=product_id]', function() {
-        var hiddenproduct = $("#hiddenproduct").val();
-        var product_id = $(this).val();
-        // $.each(hiddenproduct, function(key, value) {
-        // alert(value);
-        // })
-    })
+    // $(document).on('change', '[id=product_id]', function() {
+    //     var hiddenproduct = $("#hiddenproduct").val();
+    //     var product_id = $(this).val();
+    //     // $.each(hiddenproduct, function(key, value) {
+    //     // alert(value);
+    //     // })
+    // })
 
     $(document).on('change', '[id=category_id]', function() {
         $('#loading').show();
@@ -171,7 +308,12 @@
                     $.each(res.data, function(key, value) {
                         $('#product_id').append(
                             `
-                            <option value="${value.id}###${value.product_price}###${value.product_photo}###${value.product_description}###${value.product_name}">${value.product_name}</option>
+                            <option value="${value.id}"
+                            data-photo="${value.product_photo}"
+                            data-description="${value.product_description}"
+                            data-name="${value.product_name}"
+                            data-price="${value.product_price}"
+                            >${value.product_name}</option>
                              `
                         );
                     });
