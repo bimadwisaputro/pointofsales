@@ -187,6 +187,7 @@
             `,
             preConfirm: async (login) => {
                 Swal.showLoading();
+                $('#loading').show();
                 try {
                     i = 0;
                     mapping = [
@@ -226,7 +227,17 @@
                         },
                         success: function(res) {
                             if (res.status == '1') {
-                                window.location.href = '/pos';
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    text: 'Success Add !',
+                                    title: "Successfully Add",
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                                setTimeout(function() {
+                                    window.location.href = '/pos';
+                                }, 2100);
                             } else {
                                 Swal.fire({
                                     position: "top-end",
@@ -234,10 +245,10 @@
                                     text: 'Error!',
                                     title: "Error",
                                     showConfirmButton: false,
-                                    timer: 3000
+                                    timer: 2000
                                 });
+                                $('#loading').hide();
                             }
-                            $('#loading').hide();
                         }
                     });
 

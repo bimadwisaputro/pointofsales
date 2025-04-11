@@ -21,7 +21,7 @@
                                         <th>Date</th>
                                         <th>Amount</th>
                                         <th>Status</th>
-                                        <th></th>
+                                        <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -31,15 +31,15 @@
                                             <td>{{ $index += 1 }}</td>
                                             <td>{{ $data->order_code }}</td>
                                             <td>{{ $data->order_date }}</td>
-                                            <td>{{ $data->order_amount }}</td>
-                                            <td>{{ $data->status ? 'Paid' : 'Unpaid' }}</td>
+                                            <td>{{ number_format($data->order_amount) }}</td>
+                                            <td>{{ $data->order_status ? 'Paid' : 'Unpaid' }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('pos.show', $data->id) }}"
                                                     class="btn btn-sm btn-secondary">
-                                                    <i class="bi bi-pencil"></i>
+                                                    <i class="bi bi-eye"></i>
                                                 </a>
                                                 <a href="{{ route('pos.edit', $data->id) }}" class="btn btn-sm btn-success">
-                                                    <i class="bi bi-file"></i>
+                                                    <i class="bi bi-printer"></i>
                                                 </a>
                                             </td>
                                         </tr>

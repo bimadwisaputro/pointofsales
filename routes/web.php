@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('product', ProductController::class);
     Route::post('get-product', [ProductController::class, 'getproduct']);
     Route::post('insert-transaction', [TransactionController::class, 'insertTransaction']);
+    Route::get('print/{id}', [TransactionController::class, 'print'])->name('print');
     // Route::get('get-product/{id}', [ProductController::class, 'getproduct']); //kalo page get
     Route::resource('pos', TransactionController::class);
 });

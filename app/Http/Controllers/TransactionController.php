@@ -65,7 +65,10 @@ class TransactionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data['title'] = 'Order Details';
+        $data['data'] = Others::findOrFail($id);
+        $data['dataDetail'] = OthersDetails::with('product')->where('order_id', $id)->get();
+        return view('pos.show', $data);
     }
 
     /**
@@ -158,5 +161,13 @@ class TransactionController extends Controller
             $json['status'] = 0;
         }
         return json_encode($json);
+    }
+
+    public function print(string $id)
+    {
+        $data['title'] = 'Order Details';
+        $data['data'] = Others::findOrFail($id);
+        $data['dataDetail'] = OthersDetails::with('product')->where('order_id', $id)->get();
+        return view('pos.print', $data);
     }
 }
