@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Apr 2025 pada 11.05
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Apr 24, 2025 at 08:01 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cache`
+-- Table structure for table `cache`
 --
 
 CREATE TABLE `cache` (
@@ -36,7 +36,7 @@ CREATE TABLE `cache` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cache_locks`
+-- Table structure for table `cache_locks`
 --
 
 CREATE TABLE `cache_locks` (
@@ -48,7 +48,7 @@ CREATE TABLE `cache_locks` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -57,7 +57,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
@@ -67,7 +67,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `categories_bk`
+-- Table structure for table `categories_bk`
 --
 
 CREATE TABLE `categories_bk` (
@@ -78,7 +78,7 @@ CREATE TABLE `categories_bk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `categories_bk`
+-- Dumping data for table `categories_bk`
 --
 
 INSERT INTO `categories_bk` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -93,7 +93,7 @@ INSERT INTO `categories_bk` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -109,7 +109,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jobs`
+-- Table structure for table `jobs`
 --
 
 CREATE TABLE `jobs` (
@@ -125,7 +125,7 @@ CREATE TABLE `jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `job_batches`
+-- Table structure for table `job_batches`
 --
 
 CREATE TABLE `job_batches` (
@@ -144,7 +144,7 @@ CREATE TABLE `job_batches` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -154,7 +154,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -171,7 +171,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `others`
+-- Table structure for table `others`
 --
 
 CREATE TABLE `others` (
@@ -186,7 +186,7 @@ CREATE TABLE `others` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `others`
+-- Dumping data for table `others`
 --
 
 INSERT INTO `others` (`id`, `order_code`, `order_date`, `order_amount`, `order_change`, `order_status`, `created_at`, `updated_at`) VALUES
@@ -210,12 +210,23 @@ INSERT INTO `others` (`id`, `order_code`, `order_date`, `order_amount`, `order_c
 (39, 'ORD240425039', '2025-04-24', 80000.00, 1.00, 1, '2025-04-24 00:14:38', '2025-04-24 00:14:38'),
 (40, 'ORD240425040', '2025-04-24', 100000.00, 1.00, 1, '2025-04-24 00:15:02', '2025-04-24 00:15:02'),
 (41, 'ORD240425041', '2025-04-24', 30000.00, 1.00, 1, '2025-04-24 00:36:55', '2025-04-24 00:36:55'),
-(42, 'ORD240425042', '2025-04-24', 50000.00, 1.00, 1, '2025-04-24 01:26:13', '2025-04-24 01:26:13');
+(42, 'ORD240425042', '2025-04-24', 50000.00, 1.00, 1, '2025-04-24 01:26:13', '2025-04-24 01:26:13'),
+(43, 'ORD240425043', '2025-04-24', 9000.00, 1.00, 1, '2025-04-24 10:34:23', '2025-04-24 10:34:23'),
+(44, 'ORD240425044', '2025-04-24', 89000.00, 1.00, 1, '2025-04-24 10:34:49', '2025-04-24 10:34:49'),
+(45, 'ORD240425045', '2025-04-24', 89000.00, 1.00, 1, '2025-04-24 10:35:00', '2025-04-24 10:35:00'),
+(46, 'ORD240425046', '2025-04-24', 90000.00, 1.00, 1, '2025-04-24 10:35:53', '2025-04-24 10:35:53'),
+(47, 'ORD240425047', '2025-04-24', 9000.00, 1.00, 1, '2025-04-24 10:37:40', '2025-04-24 10:37:40'),
+(48, 'ORD240425048', '2025-04-24', 9000.00, 1.00, 1, '2025-04-24 10:39:40', '2025-04-24 10:39:40'),
+(49, 'ORD240425049', '2025-04-24', 9000.00, 1.00, 1, '2025-04-24 10:42:25', '2025-04-24 10:42:25'),
+(50, 'ORD240425050', '2025-04-24', 9000.00, 1.00, 1, '2025-04-24 10:42:29', '2025-04-24 10:42:29'),
+(51, 'ORD240425051', '2025-04-24', 9000.00, 1.00, 1, '2025-04-24 10:42:51', '2025-04-24 10:42:51'),
+(52, 'ORD240425052', '2025-04-24', 9000.00, 1.00, 1, '2025-04-24 10:44:07', '2025-04-24 10:44:07'),
+(53, 'ORD240425053', '2025-04-24', 9000.00, 1.00, 1, '2025-04-24 10:44:37', '2025-04-24 10:44:37');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `others_details`
+-- Table structure for table `others_details`
 --
 
 CREATE TABLE `others_details` (
@@ -230,7 +241,7 @@ CREATE TABLE `others_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `others_details`
+-- Dumping data for table `others_details`
 --
 
 INSERT INTO `others_details` (`id`, `order_id`, `product_id`, `qty`, `order_price`, `order_subtotal`, `created_at`, `updated_at`) VALUES
@@ -255,12 +266,27 @@ INSERT INTO `others_details` (`id`, `order_id`, `product_id`, `qty`, `order_pric
 (24, 40, 2, 1, 30000.00, 30000.00, '2025-04-24 00:15:02', '2025-04-24 00:15:02'),
 (25, 40, 1, 1, 50000.00, 50000.00, '2025-04-24 00:15:02', '2025-04-24 00:15:02'),
 (26, 41, 2, 1, 30000.00, 30000.00, '2025-04-24 00:36:55', '2025-04-24 00:36:55'),
-(27, 42, 1, 1, 50000.00, 50000.00, '2025-04-24 01:26:13', '2025-04-24 01:26:13');
+(27, 42, 1, 1, 50000.00, 50000.00, '2025-04-24 01:26:13', '2025-04-24 01:26:13'),
+(28, 43, 4, 1, 9000.00, 9000.00, '2025-04-24 10:34:23', '2025-04-24 10:34:23'),
+(29, 44, 3, 1, 20000.00, 20000.00, '2025-04-24 10:34:49', '2025-04-24 10:34:49'),
+(30, 44, 2, 2, 30000.00, 60000.00, '2025-04-24 10:34:49', '2025-04-24 10:34:49'),
+(31, 44, 4, 1, 9000.00, 9000.00, '2025-04-24 10:34:49', '2025-04-24 10:34:49'),
+(32, 45, 3, 1, 20000.00, 20000.00, '2025-04-24 10:35:00', '2025-04-24 10:35:00'),
+(33, 45, 2, 2, 30000.00, 60000.00, '2025-04-24 10:35:00', '2025-04-24 10:35:00'),
+(34, 45, 4, 1, 9000.00, 9000.00, '2025-04-24 10:35:00', '2025-04-24 10:35:00'),
+(35, 46, 4, 10, 9000.00, 90000.00, '2025-04-24 10:35:53', '2025-04-24 10:35:53'),
+(36, 47, 4, 1, 9000.00, 9000.00, '2025-04-24 10:37:40', '2025-04-24 10:37:40'),
+(37, 48, 4, 1, 9000.00, 9000.00, '2025-04-24 10:39:40', '2025-04-24 10:39:40'),
+(38, 49, 4, 1, 9000.00, 9000.00, '2025-04-24 10:42:25', '2025-04-24 10:42:25'),
+(39, 50, 4, 1, 9000.00, 9000.00, '2025-04-24 10:42:29', '2025-04-24 10:42:29'),
+(40, 51, 4, 1, 9000.00, 9000.00, '2025-04-24 10:42:51', '2025-04-24 10:42:51'),
+(41, 52, 4, 1, 9000.00, 9000.00, '2025-04-24 10:44:07', '2025-04-24 10:44:07'),
+(42, 53, 4, 1, 9000.00, 9000.00, '2025-04-24 10:44:37', '2025-04-24 10:44:37');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_reset_tokens`
+-- Table structure for table `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
@@ -272,7 +298,7 @@ CREATE TABLE `password_reset_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -284,23 +310,26 @@ CREATE TABLE `products` (
   `product_description` text DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `qty_awal` int(11) NOT NULL,
+  `qty_keluar` int(11) NOT NULL,
+  `qty_akhir` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `products`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `product_name`, `product_photo`, `product_price`, `product_description`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Kue Pancong', 'product/Uu4RMWrArWjnEnqVlTx8fQtbh5MV6esKEDKSRQS5.png', 50000.00, 'Harga untuk 1 paket isi 10', 1, '2025-04-08 19:55:31', '2025-04-23 23:07:46'),
-(2, 2, 'Soda Gembira', 'product/MbSlSTtKnyuOGJqAxLeCUITt7JBwBQYsWG1FQ96r.png', 30000.00, 'Minuman Soda', 1, '2025-04-08 20:16:27', '2025-04-23 23:08:02'),
-(3, 1, 'Kue Balok', 'product/2F71PUx6ARr1sikDExEkhDNDgtDtiTanVtazJhJJ.png', 20000.00, 'Kue Balok isi 6 pcs', 1, '2025-04-08 23:30:37', '2025-04-23 23:08:46'),
-(4, 2, 'Wedang Jahe', 'product/vRGkX4aGZ1Nc1SzJABNcVEAfi7Tlf0pdTHH4gsFF.png', 9000.00, 'Satu gelas air jahe', 1, '2025-04-08 23:34:36', '2025-04-23 23:09:00');
+INSERT INTO `products` (`id`, `category_id`, `product_name`, `product_photo`, `product_price`, `product_description`, `is_active`, `created_at`, `updated_at`, `qty_awal`, `qty_keluar`, `qty_akhir`) VALUES
+(1, 1, 'Burger Gede', 'product/pY8f0JmcLMlDQ8sFe6XzZ07AcSPW8QI7VLiF00hZ.png', 50000.00, 'Harga untuk 1 paket isi 10', 1, '2025-04-08 19:55:31', '2025-04-24 07:00:39', 50, 20, 30),
+(2, 2, 'Kopi Susu Gembira', 'product/KPmyEZi2nO0meMNPBb2ZvFzU2pLmZVttpX3nGI1Q.png', 30000.00, 'Minuman Susu Campur Kopi', 1, '2025-04-08 20:16:27', '2025-04-24 07:01:19', 30, 30, 0),
+(3, 1, 'Kue Donat Coklat', 'product/4tykQvu6gdQgZPv3tRvnV3OzsRhD5c0uzqrV0mNN.png', 20000.00, 'Kue Donat isi 6 pcs', 1, '2025-04-08 23:30:37', '2025-04-24 07:01:57', 40, 18, 22),
+(4, 2, 'Es Teh', 'product/eg52OCnrip5pHHaxWZfqR5ZsPlsiRHSdHgg2hmSx.png', 9000.00, 'Satu gelas Teh Dingin', 1, '2025-04-08 23:34:36', '2025-04-24 07:02:32', 240, 33, 207);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `products_bk`
+-- Table structure for table `products_bk`
 --
 
 CREATE TABLE `products_bk` (
@@ -318,7 +347,7 @@ CREATE TABLE `products_bk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `products_bk`
+-- Dumping data for table `products_bk`
 --
 
 INSERT INTO `products_bk` (`id`, `categories_id`, `name`, `description`, `price`, `photo`, `status`, `created_at`, `created_id`, `updated_at`, `updated_id`) VALUES
@@ -327,7 +356,7 @@ INSERT INTO `products_bk` (`id`, `categories_id`, `name`, `description`, `price`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
@@ -338,7 +367,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -349,7 +378,7 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sessions`
+-- Table structure for table `sessions`
 --
 
 CREATE TABLE `sessions` (
@@ -362,17 +391,16 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `sessions`
+-- Dumping data for table `sessions`
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('ia03B1FMLWOtfWQJuUUyjkpy7T7WoWsRPZ0JngD1', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibHFBMHFGMXJybmZvZGFPeFZSZ2E4UWQxQ1Z4MkRNeGlZdlJKQUtyaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9wb3MiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjU6ImFsZXJ0IjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=', 1745483173),
-('ygszi99eVE8zoHrNyQAXPG8Iq28bUqTCSokBWoG7', 5, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRnU2TGYzQmdnTFNoN1V3YWVxRkFoS3J1T0Vod1o3ZEhJSGlDbTRQQSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sYXBvcmFuLXBlbmp1YWxhbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NToiYWxlcnQiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU7fQ==', 1745485029);
+('1x4T8GhXhmunkGDXTzkrNh8HVfvhu0NrZmSIFKwc', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoidVRsdm9xN0RqUXJkQWpQS1lQTE1odkVJZFFzdXkxdm81Zm96UERCdSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjU6ImFsZXJ0IjthOjA6e31zOjEzOiJzZXNzaW9uX3JvbGVzIjthOjE6e2k6MDtzOjU6Ikthc2lyIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1745517599);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -387,7 +415,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -398,7 +426,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_roles`
+-- Table structure for table `user_roles`
 --
 
 CREATE TABLE `user_roles` (
@@ -410,109 +438,107 @@ CREATE TABLE `user_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `user_roles`
+-- Dumping data for table `user_roles`
 --
 
 INSERT INTO `user_roles` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2025-04-24 02:42:42', NULL),
-(2, 4, 2, '2025-04-23 20:05:23', '2025-04-23 20:05:23'),
 (3, 5, 3, '2025-04-23 20:07:56', '2025-04-23 20:15:14'),
-(4, 5, 3, '2025-04-23 20:13:05', '2025-04-23 20:15:14'),
-(5, 5, 3, '2025-04-23 20:13:14', '2025-04-23 20:15:14');
+(12, 1, 1, '2025-04-24 08:39:01', '2025-04-24 08:39:01'),
+(13, 4, 2, '2025-04-24 08:43:15', '2025-04-24 08:43:15');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `cache`
+-- Indexes for table `cache`
 --
 ALTER TABLE `cache`
   ADD PRIMARY KEY (`key`);
 
 --
--- Indeks untuk tabel `cache_locks`
+-- Indexes for table `cache_locks`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
 
 --
--- Indeks untuk tabel `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `categories_bk`
+-- Indexes for table `categories_bk`
 --
 ALTER TABLE `categories_bk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `jobs`
+-- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jobs_queue_index` (`queue`);
 
 --
--- Indeks untuk tabel `job_batches`
+-- Indexes for table `job_batches`
 --
 ALTER TABLE `job_batches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `others`
+-- Indexes for table `others`
 --
 ALTER TABLE `others`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `others_details`
+-- Indexes for table `others_details`
 --
 ALTER TABLE `others_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_reset_tokens`
+-- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `products_category_id_foreign` (`category_id`);
 
 --
--- Indeks untuk tabel `products_bk`
+-- Indexes for table `products_bk`
 --
 ALTER TABLE `products_bk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `sessions`
+-- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -520,14 +546,14 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `user_roles`
+-- Indexes for table `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD PRIMARY KEY (`id`),
@@ -535,93 +561,93 @@ ALTER TABLE `user_roles`
   ADD KEY `user_roles_role_id_foreign` (`role_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `categories_bk`
+-- AUTO_INCREMENT for table `categories_bk`
 --
 ALTER TABLE `categories_bk`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `jobs`
+-- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `others`
+-- AUTO_INCREMENT for table `others`
 --
 ALTER TABLE `others`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT for table `others_details`
+--
+ALTER TABLE `others_details`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT untuk tabel `others_details`
---
-ALTER TABLE `others_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT untuk tabel `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `products_bk`
+-- AUTO_INCREMENT for table `products_bk`
 --
 ALTER TABLE `products_bk`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `user_roles`
+-- AUTO_INCREMENT for table `user_roles`
 --
 ALTER TABLE `user_roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user_roles`
+-- Constraints for table `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD CONSTRAINT `user_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),

@@ -16,8 +16,8 @@ class UsersController extends Controller
     public function index()
     {
         $data['title'] = "Users";
-        $data['data'] = User::with('UserRoles.role')->orderBy('id', 'desc')->paginate(5);
-        // return $data;
+        $data['data'] = User::with('UserRoles.role')->orderBy('id', 'desc')->get();
+        // return $data['data'];
         return view('users.index', $data);
     }
 
@@ -44,10 +44,13 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        UserRoles::create([
-            'user_id' => $user->id,
-            'role_id' => $request->role_id,
-        ]);
+
+        foreach ($request->role_id as $item) {
+            UserRoles::create([
+                'user_id' => $user->id,
+                'role_id' => $item,
+            ]);
+        }
         Alert::success('Berhasil', 'User berhasil dibuat!');
         return redirect()->route('users.index');
     }
@@ -69,7 +72,13 @@ class UsersController extends Controller
         //
         // $data['edit'] = User::find($id);
         $data['edit'] = User::with('UserRoles')->findOrFail($id);
-        $data['roles'] = Roles::get();
+        // $data['roles'] = Roles::with('userroles')->whereHas('userroles', function ($q) use ($id) {
+        //     $q->where('user_id', $id);
+        // })->get();
+        $data['roles'] = Roles::withCount(['userroles as totaluser' => function ($query) use ($id) {
+            $query->where('user_id', $id);
+        }])->get();
+
         return view('users.edit', $data);
     }
 
@@ -90,9 +99,16 @@ class UsersController extends Controller
             'password' => $request->password ?? $user->password,
         ]);
 
-        UserRoles::where('user_id', $id)->update([
-            'role_id' => $request->role_id,
-        ]);
+        $del = UserRoles::where('user_id', $id)->delete();
+        if ($del) {
+            foreach ($request->role_id as $item) {
+                UserRoles::create([
+                    'user_id' => $id,
+                    'role_id' => $item,
+                ]);
+            }
+        }
+
         Alert::success('Berhasil', 'User berhasil diupdate!');
         return redirect()->to('users');
     }

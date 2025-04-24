@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,6 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // $user = Auth::user()->UserRoles;
+        // return $user;
         $title = "Data Products";
         // select * from product LEFT JOIN categories ON categories.id = products.category_id
         // ORM : Object Relation Mapp

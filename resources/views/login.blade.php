@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/adminlte/assets/img/favicon.png" rel="icon">
-    <link href="assets/adminlte/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/img/logo.png" rel="icon">
+    <link href="/img/logo.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -44,6 +44,13 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+   <style>
+   
+
+        .logologin img {
+            max-height: 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -64,10 +71,12 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                            <div class="d-flex justify-content-center py-4">
-                                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="assets/adminlte/assets/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">Point Of Sales</span>
+                            <div class="logologin justify-content-center align-items-center   ">
+                                <img src="/img/logo.png" alt=""><br>
+                            </div>
+                            <div class="justify-content-center py-4">
+                                <a href="index.php" class="logo d-flex align-items-center w-auto">
+                                    <span class="d-none d-lg-block" style="font-family:'Nunito', sans-serif;">Point Of Sales</span>
                                 </a>
                             </div><!-- End Logo -->
 

@@ -50,8 +50,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <!-- tags input -->
 <script src="{{ asset('assets/bootstrap-tags/bootstrap-tagsinput.min.js') }}"></script>
-<!-- izitoast -->
-<script src="{{ asset('assets/iziToast/dist/js/iziToast.js') }}"></script>
+ 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
@@ -62,6 +61,32 @@
 
 <script>
     // $('.select2tags').select2();
+  $('.select2tags').select2();
+
+   $('.datatablebutton').DataTable({
+        dom: 'B',
+        "bPaginate": false,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+
+
+//sidebarleft $segment = request()->segment(1); 
+    $.each($(".sidebarleft"), function(index, value) {
+        var id = $(this).attr('id');
+        var parentid = $(this).attr('parentid');
+        if (id == '{{ request()->segment(1) }}') {
+            if (parentid == '') {
+                $("#" + id).removeClass('collapsed');
+            } else {
+                $("#" + id).addClass('active');
+                $("#" + parentid + "-nav").addClass('show');
+                $("#" + parentid + "").removeClass('collapsed');
+            }
+        }
+
+    })
 
     function removesdetail(counter) {
         $("#sub_row" + counter).remove();
@@ -365,41 +390,7 @@
     setTimeout(function() {
         $('#loading').hide();
     }, 2000);
-
-    iziToast.settings({
-        timeout: 3000, // default timeout
-        resetOnHover: true,
-        transitionIn: 'flipInX',
-        transitionOut: 'flipOutX',
-        position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-        onOpen: function() {
-            console.log('callback abriu!');
-        },
-        onClose: function() {
-            console.log("callback fechou!");
-        }
-    });
-
-    function callsuccesstoast(title, description, type) {
-
-        if (type == 'danger') {
-            iziToast.danger({
-                timeout: 5000,
-                icon: 'fa fa-close',
-                title: '' + title + '',
-                message: '' + description + ''
-            });
-        } else if (type == 'success') {
-            iziToast.success({
-                timeout: 5000,
-                icon: 'fa fa-check',
-                title: '' + title + '',
-                message: '' + description + ''
-            });
-        }
-
-
-    }
+ 
     gsap.from(".effectup", {
         y: 50,
         duration: 3,

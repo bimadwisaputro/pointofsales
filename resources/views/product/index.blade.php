@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Data Categories')
+@section('title', 'Data Products')
 
 @section('content')
     <section class="section">
@@ -11,7 +11,9 @@
                         <h5 class="card-title">{{ $title ?? '' }}</h5>
                         <div class="mt-4 mb-3">
                             <div align="right" class="mb-3">
+                                @if(array_intersect(['Administrator'], session('session_roles', [])))
                                 <a class="btn btn-primary" href="{{ route('product.create') }}">Add Product</a>
+                                @endif
                             </div>
                             <table class="table table-bordered">
                                 <thead>
@@ -22,7 +24,9 @@
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Status</th>
+                                        @if(array_intersect(['Administrator'], session('session_roles', [])))
                                         <th></th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,7 +47,8 @@
                                             <td>{{ $data->product_name }}</td>
                                             <td>{{ $data->product_price }}</td>
                                             <td>{{ $data->is_active ? 'Publish' : 'Draft' }}</td>
-                                            <td class="text-center">
+                                              @if(array_intersect(['Administrator'], session('session_roles', [])))
+                                            <td class="text-center"> 
                                                 <a href="{{ route('product.edit', $data->id) }}"
                                                     class="btn btn-sm btn-secondary">
                                                     <i class="bi bi-pencil"></i>
@@ -57,6 +62,7 @@
                                                     </button>
                                                 </form>
                                             </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

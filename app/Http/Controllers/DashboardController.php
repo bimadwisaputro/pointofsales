@@ -11,7 +11,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $data['title'] = 'Dashboard';
+
+        // $data = DB::select("
+        //     SELECT * FROM `others` 
+        //     WHERE order_date >= '2025-04-10' AND order_date <= '2025-04-24'
+        // ");
+        return view('dashboard.index', $data);
     }
 
     /**

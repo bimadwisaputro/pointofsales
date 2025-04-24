@@ -21,13 +21,16 @@
             </ul>
         </li>  --}}
 
-        @anyrole(['Administrator'])
+       
+        @if(array_intersect(['Kasir','Administrator'], session('session_roles', [])))
+
             <li class="nav-heading">Masters</li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#masters-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="masters-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    @if(array_intersect(['Administrator'], session('session_roles', [])))
                     <li>
                         <a href="/roles" id="roles" parentid="masters" class="sidebarleft">
                             <i class="bi bi-circle"></i><span>Level</span>
@@ -43,22 +46,25 @@
                             <i class="bi bi-circle"></i><span>Users</span>
                         </a>
                     </li>
+                     @endif
+                     @if(array_intersect(['Kasir','Administrator'], session('session_roles', [])))
                     <li>
                         <a href="/product" id="product" parentid="masters" class="sidebarleft">
                             <i class="bi bi-circle"></i><span>Product</span>
                         </a>
                     </li>
+                     @endif
                 </ul>
             </li><!-- End Components Nav -->
-        @endanyrole
-        @anyrole(['Kasir'])
+        @endif
+        @if(array_intersect(['Kasir'], session('session_roles', [])))
             <li class="nav-heading">Pos</li>
             <li class="nav-item">
                 <a class="nav-link collapsed" id="poss" data-bs-target="#poss-nav" data-bs-toggle="collapse"
                     href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Pos Manage</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="poss-nav" class="nav-content collapse " data-bs-parent="#poss-nav">
+                <ul id="poss-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="{{ route('pos.create') }}" id="poscreate" parentid="poss" class="sidebarleft"
                             target="blank_">
@@ -66,41 +72,40 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('pos.index') }}" id="pos" parentid="poss" class="sidebarleft">
+                        <a href="/pos" id="pos" parentid="poss" class="sidebarleft">
                             <i class="bi bi-circle"></i><span>Pos Sale</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
-        @endanyrole.
-
-        @anyrole(['Pimpinan'])
+        @endif
+         @if(in_array('Pimpinan', session('session_roles', [])))
             <li class="nav-heading">Reports</li>
             <li class="nav-item">
                 <a class="nav-link collapsed" id="reports" data-bs-target="#reports-nav" data-bs-toggle="collapse"
                     href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="reports-nav" class="nav-content collapse " data-bs-parent="#reports-nav">
+                <ul id="reports-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/laporan-penjualan" id="laporanpenjualan" parentid="reports" class="sidebarleft"
+                        <a href="/laporan-penjualan" id="laporan-penjualan" parentid="reports" class="sidebarleft"
                             target="blank_">
                             <i class="bi bi-circle"></i><span>Laporan Penjualan</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/laporan-stokbarang" id="stokbarang" parentid="reports" class="sidebarleft">
+                        <a href="/laporan-stokbarang" id="laporan-stokbarang" parentid="reports" class="sidebarleft">
                             <i class="bi bi-circle"></i><span>Stok Barang</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/laporan-summary" id="summarypenjualan" parentid="reports" class="sidebarleft">
+                        <a href="/laporan-summary" id="laporan-summary" parentid="reports" class="sidebarleft">
                             <i class="bi bi-circle"></i><span>Summary Penjualan</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
-        @endanyrole
+        @endif
     </ul>
 
 </aside><!-- End Sidebar-->

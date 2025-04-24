@@ -27,11 +27,10 @@
                                             placeholder="Password" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="role" class="form-label">Pilih Role <span
-                                                class="text-danger">*</span></label>
-                                        <select name="role_id" id="role" class="form-select">
-                                            <option value="" disabled selected>Pilih salah satu</option>
-                                            @foreach ($roles as $role)
+                                        <label for="role" class="form-label">Role <span class="text-danger">*</span></label> 
+                                        <select class="form-control blogsform select2tags" data-placeholder="Pilih Role" name="role_id[]" multiple="multiple" id="role">
+                                            <option value="" disabled  >Pilih Role</option>
+                                            @foreach ($roles as $role) 
                                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
                                         </select>

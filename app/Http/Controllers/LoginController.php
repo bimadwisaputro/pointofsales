@@ -26,6 +26,10 @@ class LoginController extends Controller
         // Auth : class
         if (Auth::attempt($credentials)) {
             // return 'adwdawd';
+            $roles = Auth::user()->roles->pluck('name')->toArray();
+            // Simpan roles ke dalam session
+            session(['session_roles' => $roles]);
+            //return $roles;
             Alert::success('Welcome ! ', 'Anda berhasil masuk!');
             return redirect('dashboard')->with('success', 'Success Login');
         } else {
@@ -34,6 +38,8 @@ class LoginController extends Controller
             return back()->withErrors(['email' => 'Please check your credentials'])->withInput();
         }
     }
+
+
 
     public function logout()
     {

@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
@@ -18,14 +19,20 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $user = Auth::user();
+        $userRoles = session('session_roles', []);
 
-        Log::info('User: ', ['user' => $user]);
+        if (!$user || !$userRoles) {
 
-        if (!$user) {
+            Alert::error('Warning', 'Unauthorized access.');
             return redirect('/');
         }
 
-        if (!$user->hasAnyRole($roles)) {
+        // Cek apakah user memiliki role yang diperbolehkan
+        // return $userRoles;
+        // dd($roles);
+        // dd(session('session_roles'));
+        if (!array_intersect($roles, $userRoles)) {
+            Alert::error('Warning', 'Unauthorized access.');
             abort(403, 'Unauthorized.');
         }
 

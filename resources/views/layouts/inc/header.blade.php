@@ -11,8 +11,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/adminlte/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('assets/adminlte/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="/img/logo.png" rel="icon">
+    <link href="/img/logo.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -39,6 +39,14 @@
 
     <link href="{{ asset('assets/iziToast/dist/css/iziToast.css') }}" rel="stylesheet">
     <style>
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+background-color: #ffc107;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    color:#000;
+}
+
         .bootstrap-tagsinput .tag {
             margin-right: 2px;
             color: #FFFFFF;
@@ -113,7 +121,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="{{ asset('assets/adminlte/assets/img/logo.png') }}" alt="">
+                <img src="/img/logo.png" alt="">
                 <span class="d-none d-lg-block">Point Of Sales</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -283,7 +291,7 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('assets/adminlte/assets/img/profile-img.jpg') }}" alt="Profile"
+                        <img src="/img/noprofile.png" alt="Profile"
                             class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
@@ -291,18 +299,12 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>{{ auth()->user()->name }}</h6>
-                            <span>Web Designer</span>
+                            <span>{{ implode(', ', session('session_roles', [])) }}</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

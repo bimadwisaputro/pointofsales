@@ -201,6 +201,7 @@ class TransactionController extends Controller
                     $set[$noc]['order_price'] = $rows['price'];
                     $set[$noc]['order_subtotal'] = $rows['price'] * $rows['qty'];
                     $set[$noc]['qty'] = $rows['qty'];
+                    $productId[] = $rows['productId'];
                     // foreach ($rows as $index => $row) {
                     //     if ($no == 0) {
                     //     }
@@ -211,6 +212,8 @@ class TransactionController extends Controller
                     $noc++;
                 }
             }
+            // return $listqty;
+            $this->caculate_stok($productId);
             Alert::toast('Data Insert Successfully', 'success');
             return redirect()->to('pos');
         } else {
@@ -229,5 +232,38 @@ class TransactionController extends Controller
     {
         $data['title'] = 'Kasir';
         return view('kasir', $data);
+    }
+    public function caculate_stok($arr)
+    {
+        // $inClause = implode(',', $arr);
+        // return $inClause;
+        // $update = DB::update("
+        // UPDATE products a
+        // LEFT JOIN (
+        //     SELECT SUM(qty) AS totalqty, product_id 
+        //     FROM others_details 
+        //     GROUP BY product_id
+        // ) b ON a.id = b.product_id
+        // SET 
+        //     a.qty_keluar = IFNULL(b.totalqty, 0),
+        //     a.qty_akhir  = a.qty_awal - IFNULL(b.totalqty, 0)
+        // WHERE a.id IN ($inClause)
+        // ");
+
+        $results = DB::table('products as a')
+            ->leftJoin(DB::raw('(SELECT SUM(qty) as totalqty, product_id FROM others_details GROUP BY product_id) b'), 'a.id', '=', 'b.product_id')
+            ->select('a.id', 'a.qty_awal', DB::raw('IFNULL(b.totalqty, 0) as totalqty'))
+            ->whereIn('a.id', $arr)
+            ->get();
+
+        // 2. Update per baris
+        foreach ($results as $row) {
+            DB::table('products')
+                ->where('id', $row->id)
+                ->update([
+                    'qty_keluar' => $row->totalqty,
+                    'qty_akhir'  => $row->qty_awal - $row->totalqty,
+                ]);
+        }
     }
 }

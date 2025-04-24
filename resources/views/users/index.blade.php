@@ -28,7 +28,11 @@
                                         <tr>
                                             <td class="text-center">{{ $no++ }}</td>
                                             <td>{{ $rowcat->name }}</td>
-                                            <td>{{ $rowcat->UserRoles[0]->role->name }}</td>
+                                            <td>
+                                                 @foreach ($rowcat->UserRoles as $rowd)
+                                                     <span class="badge text-bg-warning">{{ $rowd->role->name }}</span>
+                                                @endforeach
+                                            </td>
                                             <td>{{ $rowcat->email }}</td>
                                             <td class="text-center">
                                                 <form action="{{ route('users.destroy', $rowcat->id) }}" method="post"

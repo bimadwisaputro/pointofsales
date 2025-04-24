@@ -30,11 +30,11 @@
                                     <div class="mb-3">
                                         <label for="role" class="form-label">Pilih Role <span
                                                 class="text-danger">*</span></label>
-                                        <select name="role_id" id="role" class="form-select">
-                                            <option value="" disabled>Pilih salah satu</option>
+                                        <select class="form-control blogsform select2tags" name="role_id[]" multiple="multiple" id="role">
+                                            <option value="" disabled>Pilih Role</option> 
                                             @foreach ($roles as $role)
                                                 <option value="{{ $role->id }}"
-                                                    {{ old('role_id', $edit->userRoles[0]->role_id) == $role->id ? 'selected' : '' }}>
+                                                    {{ $role->totaluser > 0 ? 'selected' : '' }}>
                                                     {{ $role->name }}</option>
                                             @endforeach
                                         </select>
