@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Roles;
 use App\Models\User;
+use App\Models\UserRoles;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UsersController extends Controller
 {
@@ -13,7 +16,8 @@ class UsersController extends Controller
     public function index()
     {
         $data['title'] = "Users";
-        $data['data'] = User::get();
+        $data['data'] = User::with('UserRoles.role')->orderBy('id', 'desc')->paginate(5);
+        // return $data;
         return view('users.index', $data);
     }
 
@@ -25,6 +29,7 @@ class UsersController extends Controller
         //
         $data['title'] = "Users";
         // $data['data'] = User::get();
+        $data['roles'] = Roles::get();
         return view('users.create', $data);
     }
 
@@ -34,12 +39,17 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        return redirect()->to('users');
+        UserRoles::create([
+            'user_id' => $user->id,
+            'role_id' => $request->role_id,
+        ]);
+        Alert::success('Berhasil', 'User berhasil dibuat!');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -57,7 +67,9 @@ class UsersController extends Controller
     public function edit(string $id)
     {
         //
-        $data['edit'] = User::find($id);
+        // $data['edit'] = User::find($id);
+        $data['edit'] = User::with('UserRoles')->findOrFail($id);
+        $data['roles'] = Roles::get();
         return view('users.edit', $data);
     }
 
@@ -71,11 +83,17 @@ class UsersController extends Controller
         // $data['email'] = $request->email;
         // $data['password'] = $request->password;
         // User::where('id', $id)->update($data);
-        $Users = User::find($id);
-        $Users->name = $request->name;
-        $Users->email = $request->email;
-        $Users->password = $request->password;
-        $Users->save();
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password ?? $user->password,
+        ]);
+
+        UserRoles::where('user_id', $id)->update([
+            'role_id' => $request->role_id,
+        ]);
+        Alert::success('Berhasil', 'User berhasil diupdate!');
         return redirect()->to('users');
     }
 
@@ -86,6 +104,7 @@ class UsersController extends Controller
     {
         //
         User::where('id', $id)->delete();
+        Alert::success('Berhasil', 'User berhasil dihapus!');
         return redirect()->to('users');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -24,8 +25,12 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         // Auth : class
         if (Auth::attempt($credentials)) {
+            // return 'adwdawd';
+            Alert::success('Welcome ! ', 'Anda berhasil masuk!');
             return redirect('dashboard')->with('success', 'Success Login');
         } else {
+            // return 'adwdawd2222222';
+            Alert::toast('Email atau kata sandi salah!', 'error');
             return back()->withErrors(['email' => 'Please check your credentials'])->withInput();
         }
     }
@@ -33,6 +38,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
+        Alert::toast('Anda berhasil keluar!', 'success');
         return redirect()->to('login');
     }
 }

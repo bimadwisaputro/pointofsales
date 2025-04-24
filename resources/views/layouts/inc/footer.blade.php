@@ -54,8 +54,10 @@
 <script src="{{ asset('assets/iziToast/dist/js/iziToast.js') }}"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet" />
+
+@include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
 
 
 <script>
@@ -166,8 +168,6 @@
 
 
     $(document).on('click', '[id^=saveorder_]', function() {
-
-
         Swal.fire({
             title: "Are you sure want to save this data?",
             text: "You won't be able to revert this!",

@@ -99,6 +99,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div id="loading">
         <div class="loader">
             <div class="inner one"></div>

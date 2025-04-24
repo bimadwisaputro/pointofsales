@@ -26,6 +26,19 @@
                                         <input type="password" name="password" class="form-control" id="password"
                                             placeholder="Password" required>
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="role" class="form-label">Pilih Role <span
+                                                class="text-danger">*</span></label>
+                                        <select name="role_id" id="role" class="form-select">
+                                            <option value="" disabled selected>Pilih salah satu</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('role_id')
+                                            <div class="text-danger small">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                     <div class="col-12 mb-3 text-center">
                                         <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
                                         <button class="btn btn-danger" type="reset">Reset</button>

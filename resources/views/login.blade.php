@@ -47,6 +47,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div id="loading">
         <div class="loader">
             <div class="inner one"></div>
@@ -161,6 +162,10 @@
     <script src="{{ asset('assets/bootstrap-tags/bootstrap-tagsinput.min.js') }}"></script>
     <!-- izitoast -->
     <script src="{{ asset('assets/iziToast/dist/js/iziToast.js') }}"></script>
+
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+
+
     <script>
         setTimeout(function() {
             $('#loading').hide();

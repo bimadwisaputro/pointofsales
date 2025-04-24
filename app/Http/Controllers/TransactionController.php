@@ -30,9 +30,18 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        // select * from categories order by id desc
-        $categories = Categories::orderBy('id', 'desc')->get();
-        return view('pos.create', compact('categories'));
+        $data['Products'] = Products::orderBy('id', 'desc')->get()->map(function ($res) {
+            return [
+                "id" => $res->id,
+                "name" => $res->product_name,
+                "price" => (int)$res->product_price,
+                "image" => asset('storage/' . $res->product_photo),
+                "option" => null,
+            ];
+        });
+
+        // return $data['Products'];
+        return view('kasir', $data);
     }
 
     /**
@@ -125,6 +134,7 @@ class TransactionController extends Controller
     }
     public function insertTransaction(Request $request)
     {
+        // return $request;
         //insert order
         $data = new Others;
         $getcode = Others::max('id');
@@ -162,6 +172,51 @@ class TransactionController extends Controller
         }
         return json_encode($json);
     }
+    public function KasirProcess(Request $request)
+    {
+        // return $request;
+        //insert order
+        $data = new Others;
+        $getcode = Others::max('id');
+        $getcode++;
+        $data->order_code = 'ORD' . date('dmy') . sprintf("%03d", $getcode);
+        $data->order_amount = $request->total;
+        $data->order_date = date('Y-m-d');
+        $data->order_change = 1;
+        $data->order_status = 1;
+
+        if ($data->save()) {
+
+            //insert order detail
+            $last_insert = $data->id;
+            $detaillist = json_decode($request->cart, true);
+            // return $detaillist;
+            if (count($detaillist) > 0) {
+                $noc = 1;
+                foreach ($detaillist as $indexname => $rows) {
+                    $set[$noc] = array();
+                    $no = 0;
+                    $set[$noc]['order_id'] = $last_insert;
+                    $set[$noc]['product_id'] = $rows['productId'];
+                    $set[$noc]['order_price'] = $rows['price'];
+                    $set[$noc]['order_subtotal'] = $rows['price'] * $rows['qty'];
+                    $set[$noc]['qty'] = $rows['qty'];
+                    // foreach ($rows as $index => $row) {
+                    //     if ($no == 0) {
+                    //     }
+                    //     $set[$noc][$index] = $row;
+                    //     $no++;
+                    // }
+                    OthersDetails::create($set[$noc]);
+                    $noc++;
+                }
+            }
+            Alert::toast('Data Insert Successfully', 'success');
+            return redirect()->to('pos');
+        } else {
+            Alert::toast('Data Failed Insert', 'error');
+        }
+    }
 
     public function print(string $id)
     {
@@ -169,5 +224,10 @@ class TransactionController extends Controller
         $data['data'] = Others::findOrFail($id);
         $data['dataDetail'] = OthersDetails::with('product')->where('order_id', $id)->get();
         return view('pos.print', $data);
+    }
+    public function kasir(string $id)
+    {
+        $data['title'] = 'Kasir';
+        return view('kasir', $data);
     }
 }
