@@ -30,7 +30,7 @@ class LoginController extends Controller
             // Simpan roles ke dalam session
             session(['session_roles' => $roles]);
             //return $roles;
-            Alert::success('Welcome ! ', 'Anda berhasil masuk!');
+            // Alert::success('Welcome ! ', 'Anda berhasil masuk!');
             return redirect('dashboard')->with('success', 'Success Login');
         } else {
             // return 'adwdawd2222222';

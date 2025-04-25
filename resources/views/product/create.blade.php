@@ -37,6 +37,24 @@
                                 <input type="text" class="form-control" name="product_description"
                                     placeholder="Enter Product Description">
                             </div>
+                            <div class="row">
+                                <div class="mb-3 col-4">
+                                    <label for="" class="col-form-label">Qty Awal</label>
+                                    <input type="number" class="form-control" name="qty_awal" value="0"
+                                        placeholder="0">
+                                </div>
+                                <div class="mb-3 col-4">
+                                    <label for="" class="col-form-label">Qty Keluar aaaaaaa</label>
+                                    <input type="number" class="form-control" name="qty_keluar" value="0"
+                                        placeholder="0">
+                                </div>
+
+                                <div class="mb-3 col-4">
+                                    <label for="" class="col-form-label">Qty Akhir</label>
+                                    <input type="number" class="form-control" name="qty_akhir" value="0"
+                                        placeholder="0">
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label for="" class="col-form-label">Product Photo </label>
                                 <input type="file" name="product_photo">

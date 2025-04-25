@@ -1,14 +1,14 @@
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
     <div class="copyright">
-        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>@bima</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="#">Bima</a>
     </div>
 </footer><!-- End Footer -->
 
@@ -50,7 +50,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <!-- tags input -->
 <script src="{{ asset('assets/bootstrap-tags/bootstrap-tagsinput.min.js') }}"></script>
- 
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
@@ -61,9 +61,9 @@
 
 <script>
     // $('.select2tags').select2();
-  $('.select2tags').select2();
+    $('.select2tags').select2();
 
-   $('.datatablebutton').DataTable({
+    $('.datatablebutton').DataTable({
         dom: 'B',
         "bPaginate": false,
         buttons: [
@@ -72,7 +72,7 @@
     });
 
 
-//sidebarleft $segment = request()->segment(1); 
+    //sidebarleft $segment = request()->segment(1);
     $.each($(".sidebarleft"), function(index, value) {
         var id = $(this).attr('id');
         var parentid = $(this).attr('parentid');
@@ -390,7 +390,7 @@
     setTimeout(function() {
         $('#loading').hide();
     }, 2000);
- 
+
     gsap.from(".effectup", {
         y: 50,
         duration: 3,

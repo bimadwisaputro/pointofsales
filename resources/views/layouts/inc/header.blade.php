@@ -39,13 +39,13 @@
 
     <link href="{{ asset('assets/iziToast/dist/css/iziToast.css') }}" rel="stylesheet">
     <style>
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-background-color: #ffc107;
-}
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #ffc107;
+        }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
-    color:#000;
-}
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+            color: #000;
+        }
 
         .bootstrap-tagsinput .tag {
             margin-right: 2px;
@@ -291,8 +291,7 @@ background-color: #ffc107;
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="/img/noprofile.png" alt="Profile"
-                            class="rounded-circle">
+                        <img src="/img/noprofile.png" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
 

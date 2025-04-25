@@ -12,7 +12,10 @@ class Products extends Model
         'product_price',
         'product_photo',
         'product_description',
-        'is_active'
+        'qty_awal',
+        'qty_keluar',
+        'qty_akhir',
+        'is_active',
     ];
 
     public function category()

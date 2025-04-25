@@ -40,11 +40,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $data = [
             'category_id' => $request->category_id,
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
             'product_description' => $request->product_description,
+            'qty_awal' => $request->qty_awal,
+            'qty_keluar' => $request->qty_keluar,
+            'qty_akhir' => $request->qty_akhir,
             'is_active' => $request->is_active,
         ];
         // hasFile
@@ -89,6 +93,9 @@ class ProductController extends Controller
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
             'product_description' => $request->product_description,
+            'qty_awal' => $request->qty_awal,
+            'qty_keluar' => $request->qty_keluar,
+            'qty_akhir' => $request->qty_akhir,
             'is_active' => $request->is_active,
         ];
 
