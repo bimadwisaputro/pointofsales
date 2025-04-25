@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OthersDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -12,11 +14,45 @@ class DashboardController extends Controller
     public function index()
     {
         $data['title'] = 'Dashboard';
+        $data['total_sum'] = DB::select("
+               select ifnull((select count(id) total from others where order_date = current_date()) ,0)  totalorder,
+             ifnull((select sum(order_subtotal) subtotal from others_details a left join others b on a.order_id=b.id where b.order_date = current_date()) ,0) totalrevenue,
+            ifnull((select count(id) total from products  ) ,0)  totalproduct
+        ");
 
-        // $data = DB::select("
-        //     SELECT * FROM `others` 
-        //     WHERE order_date >= '2025-04-10' AND order_date <= '2025-04-24'
-        // ");
+        $data['top5product'] = DB::select("
+              SELECT a.*,ifnull(totalpenjualan,0) totalpenjualan,ifnull(totalsubtotal,0) totalsubtotal,ifnull(totalqty,0) totalqty FROM `products` a left join (select count(id) totalpenjualan, sum(order_subtotal) totalsubtotal, sum(qty) totalqty,product_id from others_details group by product_id) b on a.id=b.product_id order by b.totalqty desc limit 5;
+        ");
+        $data['top5category'] = DB::select("
+           SELECT a.*,ifnull(totalpenjualan,0) totalpenjualan,ifnull(totalsubtotal,0) totalsubtotal,ifnull(totalqty,0) totalqty FROM `categories` a left join (select count(a.id) totalpenjualan, sum(order_subtotal) totalsubtotal, sum(qty) totalqty,b.category_id from others_details a left join products b on a.product_id=b.id group by category_id ) b on a.id=b.category_id order by b.totalqty desc limit 5; ");
+
+
+        $data['last10order'] = DB::select("
+            select a.*,ifnull(totalpenjualan,0) totalpenjualan,ifnull(totalsubtotal,0) totalsubtotal,ifnull(totalqty,0) totalqty from others a left join  (select count(id) totalpenjualan, sum(order_subtotal) totalsubtotal, sum(qty) totalqty,order_id from others_details group by order_id)  b on a.id=b.order_id where a.order_date=current_date() order by a.created_at desc limit 10
+        ");
+
+        $subquery = DB::table('others_details as a')
+            ->selectRaw('
+        SUM(qty) as totalqty,
+        COUNT(a.id) as totalsell,
+        SUM(order_subtotal) as totalrevenue,
+        product_id
+         ')
+            ->leftJoin('others as b', 'a.order_id', '=', 'b.id')
+            ->whereDate('b.order_date', '=', date('Y-m-d'))
+            ->groupBy('product_id');
+
+        $data['stokproduk'] = DB::table('products as a')
+            ->leftJoinSub($subquery, 'b', 'a.id', '=', 'b.product_id')
+            ->selectRaw('
+        a.*,
+        IFNULL(b.totalqty, 0) as totalqty,
+        IFNULL(b.totalsell, 0) as totalsell,
+        IFNULL(b.totalrevenue, 0) as totalrevenue
+    ')->get();
+
+
+        // return $data['total_sum'];
         return view('dashboard.index', $data);
     }
 

@@ -20,55 +20,67 @@
 
             </ul>
         </li>  --}}
+        @if (array_intersect(['Kasir'], session('session_roles', [])))
+            <li class="nav-heading">Quicklink</li>
+            <li class="nav-item">
+                <a class="nav-link collapsed sidebarleft" id="kasir" parentid="0" href="/kasir">
+                    <i class="bi bi-calculator"></i>
+                    <span>Kasir</span>
+                </a>
+            </li>
+            <li class="nav-heading"></li>
+        @endif
 
-       
-        @if(array_intersect(['Kasir','Administrator'], session('session_roles', [])))
+
+        @if (array_intersect(['Kasir', 'Administrator'], session('session_roles', [])))
 
             <li class="nav-heading">Masters</li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#masters-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-menu-button-wide"></i><span>Master Data</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="masters-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    @if(array_intersect(['Administrator'], session('session_roles', [])))
-                    <li>
-                        <a href="/roles" id="roles" parentid="masters" class="sidebarleft">
-                            <i class="bi bi-circle"></i><span>Level</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/categories" id="categories" parentid="masters" class="sidebarleft">
-                            <i class="bi bi-circle"></i><span>Categories</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/users" id="users" parentid="masters" class="sidebarleft">
-                            <i class="bi bi-circle"></i><span>Users</span>
-                        </a>
-                    </li>
-                     @endif
-                     @if(array_intersect(['Kasir','Administrator'], session('session_roles', [])))
-                    <li>
-                        <a href="/product" id="product" parentid="masters" class="sidebarleft">
-                            <i class="bi bi-circle"></i><span>Product</span>
-                        </a>
-                    </li>
-                     @endif
+                    @if (array_intersect(['Administrator'], session('session_roles', [])))
+                        <li>
+                            <a href="/roles" id="roles" parentid="masters" class="sidebarleft">
+                                <i class="bi bi-circle"></i><span>Level</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/categories" id="categories" parentid="masters" class="sidebarleft">
+                                <i class="bi bi-circle"></i><span>Categories</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/users" id="users" parentid="masters" class="sidebarleft">
+                                <i class="bi bi-circle"></i><span>Users</span>
+                            </a>
+                        </li>
+                    @endif
+                    @if (array_intersect(['Kasir', 'Administrator'], session('session_roles', [])))
+                        <li>
+                            <a href="/product" id="product" parentid="masters" class="sidebarleft">
+                                <i class="bi bi-circle"></i><span>Product</span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </li><!-- End Components Nav -->
         @endif
-        @if(array_intersect(['Kasir'], session('session_roles', [])))
+        @if (array_intersect(['Kasir'], session('session_roles', [])))
             <li class="nav-heading">Pos</li>
             <li class="nav-item">
                 <a class="nav-link collapsed" id="poss" data-bs-target="#poss-nav" data-bs-toggle="collapse"
                     href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Pos Manage</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-menu-button-wide"></i><span>Pos Manage</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="poss-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="{{ route('pos.create') }}" id="poscreate" parentid="poss" class="sidebarleft"
                             target="blank_">
-                            <i class="bi bi-circle"></i><span>Pos Create</span>
+                            <i class="bi bi-circle"></i><span>Pos Create (Kasir)</span>
                         </a>
                     </li>
                     <li>
@@ -79,7 +91,7 @@
                 </ul>
             </li><!-- End Components Nav -->
         @endif
-         @if(in_array('Pimpinan', session('session_roles', [])))
+        @if (in_array('Pimpinan', session('session_roles', [])))
             <li class="nav-heading">Reports</li>
             <li class="nav-item">
                 <a class="nav-link collapsed" id="reports" data-bs-target="#reports-nav" data-bs-toggle="collapse"

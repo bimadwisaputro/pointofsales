@@ -43,7 +43,7 @@ Route::middleware(['checkAuth', 'role:Kasir'])->group(
         Route::resource('pos', TransactionController::class);
         Route::post('insert-transaction', [TransactionController::class, 'insertTransaction']);
         Route::post('process-submit', [TransactionController::class, 'KasirProcess']);
-        Route::get('kasir', [TransactionController::class, 'kasir']);
+        Route::get('kasir', [TransactionController::class, 'create']);
         Route::get('print/{id}', [TransactionController::class, 'print'])->name('print');
     }
 );

@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="datefrom">Date To</label>
-                                    <input type="date" class="form-control" value="{{ $dateto  }}" name="dateto"
+                                    <input type="date" class="form-control" value="{{ $dateto }}" name="dateto"
                                         id="dateto">
                                 </div>
                                 <div class="col-2">
@@ -42,41 +42,41 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Product</th>
-                                        <th>Qty Awal</th>
+                                        <th>Stok Awal</th>
                                         <th>Qty Jual</th>
-                                        <th>Qty Akhir</th> 
+                                        <th>Stok Akhir</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                     @php $no=1 @endphp
-                                     @if(is_iterable($data)) 
-                                            @forelse($data as $rowcat)
-                                                <tr>
-                                                    <td class="text-center">{{ $no++ }}</td>
-                                                    <td>{{ $rowcat->product_name }}</td>
-                                                    <td>{{ $rowcat->qty_awal }}</td>
-                                                    <td>{{ $rowcat->totalqty }}</td>
-                                                    <td>{{ $rowcat->qty_awal - $rowcat->totalqty  }}</td> 
-                                                </tr>
-                                                @empty
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td> 
-                                                </tr>
-                                            @endforelse 
+                                    @php $no=1 @endphp
+                                    @if (is_iterable($data))
+                                        @forelse($data as $rowcat)
+                                            <tr>
+                                                <td class="text-center">{{ $no++ }}</td>
+                                                <td>{{ $rowcat->product_name }}</td>
+                                                <td>{{ $rowcat->qty_awal }}</td>
+                                                <td>{{ $rowcat->totalqty }}</td>
+                                                <td>{{ $rowcat->qty_awal - $rowcat->totalqty }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        @endforelse
                                     @else
-                                             <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td> 
-                                                </tr>
-                                    @endif 
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    @endif
 
                                 </tbody>
                             </table>

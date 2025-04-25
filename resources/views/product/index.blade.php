@@ -11,8 +11,8 @@
                         <h5 class="card-title">{{ $title ?? '' }}</h5>
                         <div class="mt-4 mb-3">
                             <div align="right" class="mb-3">
-                                @if(array_intersect(['Administrator'], session('session_roles', [])))
-                                <a class="btn btn-primary" href="{{ route('product.create') }}">Add Product</a>
+                                @if (array_intersect(['Administrator'], session('session_roles', [])))
+                                    <a class="btn btn-primary" href="{{ route('product.create') }}">Add Product</a>
                                 @endif
                             </div>
                             <table class="table table-bordered">
@@ -23,9 +23,12 @@
                                         <th>Category</th>
                                         <th>Name</th>
                                         <th>Price</th>
+                                        <th>Stok Awal</th>
+                                        <th>Qty Jual</th>
+                                        <th>Stok Akhir</th>
                                         <th>Status</th>
-                                        @if(array_intersect(['Administrator'], session('session_roles', [])))
-                                        <th></th>
+                                        @if (array_intersect(['Administrator'], session('session_roles', [])))
+                                            <th></th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -46,22 +49,25 @@
                                             <td>{{ $data->category->name }}</td>
                                             <td>{{ $data->product_name }}</td>
                                             <td>{{ $data->product_price }}</td>
+                                            <td>{{ $data->qty_awal }}</td>
+                                            <td>{{ $data->qty_keluar }}</td>
+                                            <td>{{ $data->qty_akhir }}</td>
                                             <td>{{ $data->is_active ? 'Publish' : 'Draft' }}</td>
-                                              @if(array_intersect(['Administrator'], session('session_roles', [])))
-                                            <td class="text-center"> 
-                                                <a href="{{ route('product.edit', $data->id) }}"
-                                                    class="btn btn-sm btn-secondary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                                <form class="d-inline" action="{{ route('product.destroy', $data->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-sm btn-warning">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
+                                            @if (array_intersect(['Administrator'], session('session_roles', [])))
+                                                <td class="text-center">
+                                                    <a href="{{ route('product.edit', $data->id) }}"
+                                                        class="btn btn-sm btn-secondary">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                    <form class="d-inline"
+                                                        action="{{ route('product.destroy', $data->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-sm btn-warning">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
                                             @endif
                                         </tr>
                                     @endforeach
