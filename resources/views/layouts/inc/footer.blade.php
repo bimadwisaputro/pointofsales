@@ -71,7 +71,6 @@
         ]
     });
 
-
     //sidebarleft $segment = request()->segment(1);
     $.each($(".sidebarleft"), function(index, value) {
         var id = $(this).attr('id');
@@ -101,6 +100,22 @@
         return formatted;
     }
 
+    $(document).on('change', '#typereport', function() {
+        gettypereport()
+    });
+
+     if ('{{ request()->segment(1) }}' == 'laporan-penjualan' || '{{ request()->segment(1) }}' == 'laporan-stokbarang' || '{{ request()->segment(1) }}' == 'laporan-summary') {
+        gettypereport()
+    }
+    function gettypereport(){
+         var typereport =$('#typereport').val();
+        //reportfilter
+         $.each($(".reportfilter"), function(index, value) {
+            $(this).css('display','none'); 
+        })
+        $("."+typereport+"div").css('display','block'); 
+    }
+    
     $(document).on('click', '.add-row', function() {
         var category_id = $("#category_id").val();
         var product_id = $("#product_id").val();
@@ -108,7 +123,7 @@
         var price = optionselected.data('price');
         var photo = optionselected.data('photo');
         var description = optionselected.data('description');
-        var name = optionselected.data('name');;
+        var name = optionselected.data('name');
 
         checkpoint = 0;
         $('[name="product_id[]"]').each(function(i, val) {
