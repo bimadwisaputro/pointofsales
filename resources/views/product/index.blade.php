@@ -48,7 +48,7 @@
                                             </td>
                                             <td>{{ $data->category->name }}</td>
                                             <td>{{ $data->product_name }}</td>
-                                            <td>{{ $data->product_price }}</td>
+                                            <td>{{ number_format($data->product_price) }}</td>
                                             <td>{{ $data->qty_awal }}</td>
                                             <td>{{ $data->qty_keluar }}</td>
                                             <td>{{ $data->qty_akhir }}</td>

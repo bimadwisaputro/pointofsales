@@ -83,7 +83,7 @@
                                 <h5 class="card-title">Products <span>| All</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-shop"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{ $total_sum[0]->totalproduct }}</h6>

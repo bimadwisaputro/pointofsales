@@ -100,22 +100,33 @@
         return formatted;
     }
 
+    function caculate_stok_akhir() {
+
+        qty_akhir = 0;
+        var qty_awal = $("#qty_awal").val();
+        var qty_keluar = $("#qty_keluar").val();
+        qty_akhir = parseInt(qty_awal) - parseInt(qty_keluar);
+        $("#qty_akhir").val(qty_akhir);
+    }
+
     $(document).on('change', '#typereport', function() {
         gettypereport()
     });
 
-     if ('{{ request()->segment(1) }}' == 'laporan-penjualan' || '{{ request()->segment(1) }}' == 'laporan-stokbarang' || '{{ request()->segment(1) }}' == 'laporan-summary') {
+    if ('{{ request()->segment(1) }}' == 'laporan-penjualan' || '{{ request()->segment(1) }}' ==
+        'laporan-stokbarang' || '{{ request()->segment(1) }}' == 'laporan-summary') {
         gettypereport()
     }
-    function gettypereport(){
-         var typereport =$('#typereport').val();
+
+    function gettypereport() {
+        var typereport = $('#typereport').val();
         //reportfilter
-         $.each($(".reportfilter"), function(index, value) {
-            $(this).css('display','none'); 
+        $.each($(".reportfilter"), function(index, value) {
+            $(this).css('display', 'none');
         })
-        $("."+typereport+"div").css('display','block'); 
+        $("." + typereport + "div").css('display', 'block');
     }
-    
+
     $(document).on('click', '.add-row', function() {
         var category_id = $("#category_id").val();
         var product_id = $("#product_id").val();

@@ -12,39 +12,41 @@
                             @csrf
                             <div class="row mb-4">
                                 <div class="col-3">
-                                     <label for="typereport">Report Type</label>
+                                    <label for="typereport">Report Type</label>
                                     <select name="typereport" class="form-control" id="typereport">
-                                        <option value="custom"  {{ $typereport == 'custom' ? 'selected' : '' }}>Custom Date</option>
+                                        <option value="custom" {{ $typereport == 'custom' ? 'selected' : '' }}>Custom Date
+                                        </option>
                                         <option value="date" {{ $typereport == 'date' ? 'selected' : '' }}>Daily</option>
                                         <option value="week" {{ $typereport == 'week' ? 'selected' : '' }}>Weekly</option>
-                                        <option value="month" {{ $typereport == 'month' ? 'selected' : '' }}>Monthly</option>
+                                        <option value="month" {{ $typereport == 'month' ? 'selected' : '' }}>Monthly
+                                        </option>
                                     </select>
                                 </div>
 
-                                <div class="col-3 reportfilter datediv" style="display:none;" >
+                                <div class="col-3 reportfilter datediv" style="display:none;">
                                     <label for="datefrom">Date</label>
-                                    <input type="date"  class="form-control" value="{{ $date }}" name="date"
+                                    <input type="date" class="form-control" value="{{ $date }}" name="date"
                                         id="date">
                                 </div>
-                                <div class="col-3 reportfilter weekdiv" style="display:none;" >
+                                <div class="col-3 reportfilter weekdiv" style="display:none;">
                                     <label for="datefrom">Week</label>
-                                    <input type="week" id="week" class="form-control"  value="{{   $week }}" name="week"
-                                        id="week">
+                                    <input type="week" id="week" class="form-control" value="{{ $week }}"
+                                        name="week" id="week">
                                 </div>
-                                <div class="col-3 reportfilter monthdiv" style="display:none;" >
+                                <div class="col-3 reportfilter monthdiv" style="display:none;">
                                     <label for="datefrom">Month</label>
-                                    <input type="month"  class="form-control"  value="{{ $month }}"  name="month"
+                                    <input type="month" class="form-control" value="{{ $month }}" name="month"
                                         id="month">
                                 </div>
 
-                                <div class="col-3 reportfilter customdiv"   >
+                                <div class="col-3 reportfilter customdiv">
                                     <label for="datefrom">Date From</label>
-                                    <input type="date"  class="form-control" value="{{ $datefrom }}" name="datefrom"
+                                    <input type="date" class="form-control" value="{{ $datefrom }}" name="datefrom"
                                         id="datefrom">
                                 </div>
-                                <div class="col-3 reportfilter customdiv"  >
+                                <div class="col-3 reportfilter customdiv">
                                     <label for="datefrom">Date To</label>
-                                    <input type="date"  class="form-control" value="{{ $dateto }}" name="dateto"
+                                    <input type="date" class="form-control" value="{{ $dateto }}" name="dateto"
                                         id="dateto">
                                 </div>
                                 <div class="col-2">
@@ -57,6 +59,60 @@
                     </div>
                 </div>
             </div>
+            @if (is_iterable($data))
+                <div class="col-lg-12">
+                    <div class="card effectup">
+                        <div class="card-body">
+                            <h5 class="card-title">Summary</h5>
+                            <div class="mt-4 mb-3">
+                                <table class="table table-bordered table-striped datatablebutton">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Total Transaction</th>
+                                            <th>Total Qty</th>
+                                            <th>Total Penjualan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $totaltransaction = 0;
+                                            $totalqty = 0;
+                                            $totalpenjualan = 0;
+                                        @endphp
+                                        @forelse($summarylist as $rowsum)
+                                            <tr>
+                                                <td>{{ $rowsum->order_date }}</td>
+                                                <td>{{ number_format($rowsum->totaltransaction) }}</td>
+                                                <td>{{ number_format($rowsum->totalqty) }}</td>
+                                                <td>{{ number_format($rowsum->totalpenjualan) }}</td>
+                                            </tr>
+                                            @php
+                                                $totaltransaction = $totaltransaction + $rowsum->totaltransaction;
+                                                $totalqty = $totalqty + $rowsum->totalqty;
+                                                $totalpenjualan = $totalpenjualan + $rowsum->totalpenjualan;
+                                            @endphp
+                                        @empty
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        @endforelse
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>{{ number_format($totaltransaction) }}</td>
+                                            <td>{{ number_format($totalqty) }}</td>
+                                            <td>{{ number_format($totalpenjualan) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="col-lg-12">
                 <div class="card effectup">
                     <div class="card-body">

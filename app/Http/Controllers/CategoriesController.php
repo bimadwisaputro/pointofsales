@@ -33,8 +33,10 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request;
         Categories::create([
-            'category_name' => $request->category_name,
+            'name' => $request->name,
         ]);
 
         return redirect()->to('categories');
@@ -69,7 +71,7 @@ class CategoriesController extends Controller
         // Auth::user()->profile->id;
 
         $category = Categories::find($id);
-        $category->category_name = $request->category_name;
+        $category->name = $request->name;
         $category->save();
 
         return redirect()->to('categories');

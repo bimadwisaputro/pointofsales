@@ -79,7 +79,7 @@
                 <ul id="poss-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="{{ route('pos.create') }}" id="poscreate" parentid="poss" class="sidebarleft"
-                            target="blank_">
+                            target="_blank">
                             <i class="bi bi-circle"></i><span>Pos Create (Kasir)</span>
                         </a>
                     </li>

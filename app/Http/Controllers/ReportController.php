@@ -74,6 +74,14 @@ class ReportController extends Controller
             $q->where('order_date', '>=', $date['datefrom'])->where('order_date', '<=', $date['dateto']);
         })->get();
         // return $data['data'];
+
+        $data['summarylist'] = DB::select("
+               SELECT b.order_date,count(a.id) totaltransaction,sum(a.qty) totalqty,sum(a.order_subtotal) totalpenjualan
+               FROM `others_details` a
+               left join others b on a.order_id=b.id
+               where b.order_date >= '" . $date['datefrom'] . "' and b.order_date <= '" . $date['dateto'] . "'
+               group by b.order_date ");
+
         $data['title'] = 'Laporan Penjualan';
         $data['typereport'] = $request->typereport;
         toast('Data Loaded Successfully', 'success');
@@ -140,7 +148,6 @@ class ReportController extends Controller
             $data['month'] = date('Y-m');
         }
 
-
         // Query
         $subquery = DB::table('others_details as a')
             ->selectRaw('
@@ -157,11 +164,13 @@ class ReportController extends Controller
         $data['data'] = DB::table('products as a')
             ->leftJoinSub($subquery, 'b', 'a.id', '=', 'b.product_id')
             ->selectRaw('
-        a.*, 
+        a.*,
         IFNULL(b.totalqty, 0) as totalqty,
         IFNULL(b.totalsell, 0) as totalsell,
         IFNULL(b.totalrevenue, 0) as totalrevenue
     ')->get();
+
+
         // return $data['data'];
         $data['title'] = 'Laporan Stok';
         $data['typereport'] = $request->typereport;
@@ -244,11 +253,12 @@ class ReportController extends Controller
         $data['data'] = DB::table('products as a')
             ->leftJoinSub($subquery, 'b', 'a.id', '=', 'b.product_id')
             ->selectRaw('
-        a.*, 
+        a.*,
         IFNULL(b.totalqty, 0) as totalqty,
         IFNULL(b.totalsell, 0) as totalsell,
         IFNULL(b.totalrevenue, 0) as totalrevenue
     ')->get();
+
         // return $data['data'];
         $data['title'] = 'Laporan Summary';
         $data['typereport'] = $request->typereport;

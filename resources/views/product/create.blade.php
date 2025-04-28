@@ -40,19 +40,19 @@
                             <div class="row">
                                 <div class="mb-3 col-4">
                                     <label for="" class="col-form-label">Qty Awal</label>
-                                    <input type="number" class="form-control" name="qty_awal" value="0"
-                                        placeholder="0">
+                                    <input type="number" class="form-control" onchange="caculate_stok_akhir()"
+                                        name="qty_awal" id="qty_awal" value="0" placeholder="0">
                                 </div>
                                 <div class="mb-3 col-4">
-                                    <label for="" class="col-form-label">Qty Keluar aaaaaaa</label>
-                                    <input type="number" class="form-control" name="qty_keluar" value="0"
-                                        placeholder="0">
+                                    <label for="" class="col-form-label">Qty Keluar</label>
+                                    <input type="number" class="form-control" onchange="caculate_stok_akhir()"
+                                        name="qty_keluar" id="qty_keluar" value="0" placeholder="0">
                                 </div>
 
                                 <div class="mb-3 col-4">
                                     <label for="" class="col-form-label">Qty Akhir</label>
-                                    <input type="number" class="form-control" name="qty_akhir" value="0"
-                                        placeholder="0">
+                                    <input type="number" class="form-control" name="qty_akhir" id="qty_akhir"
+                                        value="0" placeholder="0">
                                 </div>
                             </div>
                             <div class="mb-3">

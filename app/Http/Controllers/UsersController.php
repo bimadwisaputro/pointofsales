@@ -119,6 +119,7 @@ class UsersController extends Controller
     public function destroy(string $id)
     {
         //
+        UserRoles::where('user_id', $id)->delete();
         User::where('id', $id)->delete();
         Alert::success('Berhasil', 'User berhasil dihapus!');
         return redirect()->to('users');
