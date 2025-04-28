@@ -109,14 +109,14 @@
         $("#qty_akhir").val(qty_akhir);
     }
 
-    $(document).on('change', '#typereport', function() {
-        gettypereport()
-    });
-
     if ('{{ request()->segment(1) }}' == 'laporan-penjualan' || '{{ request()->segment(1) }}' ==
         'laporan-stokbarang' || '{{ request()->segment(1) }}' == 'laporan-summary') {
         gettypereport()
     }
+
+    $(document).on('change', '#typereport', function() {
+        gettypereport()
+    });
 
     function gettypereport() {
         var typereport = $('#typereport').val();
