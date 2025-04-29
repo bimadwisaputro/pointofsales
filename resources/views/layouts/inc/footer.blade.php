@@ -442,7 +442,7 @@
         </div>
     </div>
 </div><!-- End Small Modal-->
-</section>
+
 </body>
 
 </html>

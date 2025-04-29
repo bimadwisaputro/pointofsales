@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\OthersDetails;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -122,6 +123,7 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Products::find($id);
+        $orderdetail = OthersDetails::where('product_id', $id)->delete();
         File::delete(public_path('storage/' . $product->product_photo));
         $product->delete();
         toast('Data Deleted Successfully', 'success');
