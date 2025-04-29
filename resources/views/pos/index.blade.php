@@ -13,7 +13,7 @@
                             <div align="right" class="mb-3">
                                 <a class="btn btn-primary" href="{{ route('pos.create') }}">Add pos</a>
                             </div>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-striped datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -38,7 +38,8 @@
                                                     class="btn btn-sm btn-secondary">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
-                                                <a href="{{ route('pos.edit', $data->id) }}" class="btn btn-sm btn-success">
+                                                <a href="{{ route('print', $data->id) }}" target="_blank"
+                                                    class="btn btn-sm btn-success">
                                                     <i class="bi bi-printer"></i>
                                                 </a>
                                             </td>

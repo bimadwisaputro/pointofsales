@@ -21,6 +21,14 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript" language="javascript"
     src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+
+<!-- Vendor JS Files -->
+<script src="{{ asset('assets/adminlte/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/adminlte/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/adminlte/assets/vendor/chart.js/chart.umd.js') }}"></script>
+<script src="{{ asset('assets/adminlte/assets/vendor/echarts/echarts.min.js') }}"></script>
+<script src="{{ asset('assets/adminlte/assets/vendor/quill/quill.js') }}"></script>
 <script type="text/javascript" language="javascript"
     src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" language="javascript"
@@ -33,14 +41,6 @@
     src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 <script type="text/javascript" language="javascript"
     src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
-
-<!-- Vendor JS Files -->
-<script src="{{ asset('assets/adminlte/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ asset('assets/adminlte/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/adminlte/assets/vendor/chart.js/chart.umd.js') }}"></script>
-<script src="{{ asset('assets/adminlte/assets/vendor/echarts/echarts.min.js') }}"></script>
-<script src="{{ asset('assets/adminlte/assets/vendor/quill/quill.js') }}"></script>
-<script src="{{ asset('assets/adminlte/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
 <script src="{{ asset('assets/adminlte/assets/vendor/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('assets/adminlte/assets/vendor/php-email-form/validate.js') }}"></script>
 
@@ -70,6 +70,8 @@
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
+
+    $('.datatable').DataTable();
 
     //sidebarleft $segment = request()->segment(1);
     $.each($(".sidebarleft"), function(index, value) {

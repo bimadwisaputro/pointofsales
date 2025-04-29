@@ -23,7 +23,7 @@
         @if (array_intersect(['Kasir'], session('session_roles', [])))
             <li class="nav-heading">Quicklink</li>
             <li class="nav-item">
-                <a class="nav-link collapsed sidebarleft" id="kasir" parentid="0" href="/kasir">
+                <a class="nav-link collapsed sidebarleft" id="kasir" parentid="0" target="_blank" href="/kasir">
                     <i class="bi bi-calculator"></i>
                     <span>Kasir</span>
                 </a>
@@ -100,8 +100,7 @@
                 </a>
                 <ul id="reports-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/laporan-penjualan" id="laporan-penjualan" parentid="reports" class="sidebarleft"
-                            target="blank_">
+                        <a href="/laporan-penjualan" id="laporan-penjualan" parentid="reports" class="sidebarleft">
                             <i class="bi bi-circle"></i><span>Laporan Penjualan</span>
                         </a>
                     </li>

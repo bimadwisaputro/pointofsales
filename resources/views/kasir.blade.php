@@ -8,7 +8,8 @@
     <title>Kasir POS</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/tailwind-pos-main/css/style.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="/img/logo.png" rel="icon">
+    <link href="/img/logo.png" rel="apple-touch-icon">
     <script src="https://unpkg.com/idb/build/iife/index-min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"></script>
     <script>
@@ -162,6 +163,7 @@
 </head>
 
 <body class="bg-blue-gray-50" x-data="initApp()">
+    @include('sweetalert::alert')
     <!-- noprint-area -->
     <div class="hide-print flex flex-row h-screen antialiased text-blue-gray-800">
         <!-- left sidebar -->
@@ -565,5 +567,6 @@
 
     <div id="print-area" class="print-area"></div>
 </body>
+@include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
 
 </html>

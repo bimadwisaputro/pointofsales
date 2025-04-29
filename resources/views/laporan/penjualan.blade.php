@@ -13,7 +13,7 @@
                             <div class="row mb-4">
                                 <div class="col-3">
                                     <label for="typereport">Report Type</label>
-                                    <select name="\" class="form-control" id="typereport">
+                                    <select name="typereport" class="form-control" id="typereport">
                                         <option value="custom" {{ $typereport == 'custom' ? 'selected' : '' }}>Custom Date
                                         </option>
                                         <option value="date" {{ $typereport == 'date' ? 'selected' : '' }}>Daily</option>

@@ -15,7 +15,7 @@
                                     <a class="btn btn-primary" href="{{ route('product.create') }}">Add Product</a>
                                 @endif
                             </div>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-striped datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>

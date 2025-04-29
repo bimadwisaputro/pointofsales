@@ -21,10 +21,12 @@ class ReportController extends Controller
         $data['month'] = date('Y-m');
         $data['typereport'] = 'custom';
         $data['title'] = 'Laporan Penjualan';
+
         return view('laporan.penjualan', $data);
     }
     public function laporan_penjualan_load(Request $request)
     {
+
         // return $request;
         // $data['data'] = Others::findOrFail($id);
         // $data['dataDetail'] = OthersDetails::with('product')->where('order_id', $id)->get();
@@ -70,6 +72,8 @@ class ReportController extends Controller
             $data['week'] = date('Y') . '-W' . date('W');
             $data['month'] = date('Y-m');
         }
+
+
         $data['data'] = OthersDetails::with('product', 'order')->whereHas('order', function ($q) use ($date) {
             $q->where('order_date', '>=', $date['datefrom'])->where('order_date', '<=', $date['dateto']);
         })->get();
@@ -77,8 +81,8 @@ class ReportController extends Controller
 
         $data['summarylist'] = DB::select("
                SELECT b.order_date,count(a.id) totaltransaction,sum(a.qty) totalqty,sum(a.order_subtotal) totalpenjualan
-               FROM `others_details` a
-               left join others b on a.order_id=b.id
+               FROM `order_details` a
+               left join orders b on a.order_id=b.id
                where b.order_date >= '" . $date['datefrom'] . "' and b.order_date <= '" . $date['dateto'] . "'
                group by b.order_date ");
 
@@ -149,14 +153,14 @@ class ReportController extends Controller
         }
 
         // Query
-        $subquery = DB::table('others_details as a')
+        $subquery = DB::table('order_details as a')
             ->selectRaw('
         SUM(qty) as totalqty,
         COUNT(a.id) as totalsell,
         SUM(order_subtotal) as totalrevenue,
         product_id
          ')
-            ->leftJoin('others as b', 'a.order_id', '=', 'b.id')
+            ->leftJoin('orders as b', 'a.order_id', '=', 'b.id')
             ->whereDate('b.order_date', '>=', $datefrom)
             ->whereDate('b.order_date', '<=', $dateto)
             ->groupBy('product_id');
@@ -238,14 +242,14 @@ class ReportController extends Controller
             $data['month'] = date('Y-m');
         }
 
-        $subquery = DB::table('others_details as a')
+        $subquery = DB::table('order_details as a')
             ->selectRaw('
         SUM(qty) as totalqty,
         COUNT(a.id) as totalsell,
         SUM(order_subtotal) as totalrevenue,
         product_id
          ')
-            ->leftJoin('others as b', 'a.order_id', '=', 'b.id')
+            ->leftJoin('orders as b', 'a.order_id', '=', 'b.id')
             ->whereDate('b.order_date', '>=', $datefrom)
             ->whereDate('b.order_date', '<=', $dateto)
             ->groupBy('product_id');

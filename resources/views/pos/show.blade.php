@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-6" align="right">
                         <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
-                        <a href="{{ route('print', $data->id) }}" target="blank_" class="btn btn-success">
+                        <a href="{{ route('print', $data->id) }}" target="_blank" class="btn btn-success">
                             <i class="bi bi-printer"></i>
                         </a>
                     </div>

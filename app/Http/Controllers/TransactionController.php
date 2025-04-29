@@ -215,7 +215,7 @@ class TransactionController extends Controller
             // return $listqty;
             $this->caculate_stok($productId);
             Alert::toast('Data Insert Successfully', 'success');
-            return redirect()->to('pos');
+            return redirect()->to('kasir');
         } else {
             Alert::toast('Data Failed Insert', 'error');
         }
@@ -240,18 +240,18 @@ class TransactionController extends Controller
         // $update = DB::update("
         // UPDATE products a
         // LEFT JOIN (
-        //     SELECT SUM(qty) AS totalqty, product_id 
-        //     FROM others_details 
+        //     SELECT SUM(qty) AS totalqty, product_id
+        //     FROM order_details
         //     GROUP BY product_id
         // ) b ON a.id = b.product_id
-        // SET 
+        // SET
         //     a.qty_keluar = IFNULL(b.totalqty, 0),
         //     a.qty_akhir  = a.qty_awal - IFNULL(b.totalqty, 0)
         // WHERE a.id IN ($inClause)
         // ");
 
         $results = DB::table('products as a')
-            ->leftJoin(DB::raw('(SELECT SUM(qty) as totalqty, product_id FROM others_details GROUP BY product_id) b'), 'a.id', '=', 'b.product_id')
+            ->leftJoin(DB::raw('(SELECT SUM(qty) as totalqty, product_id FROM order_details GROUP BY product_id) b'), 'a.id', '=', 'b.product_id')
             ->select('a.id', 'a.qty_awal', DB::raw('IFNULL(b.totalqty, 0) as totalqty'))
             ->whereIn('a.id', $arr)
             ->get();
